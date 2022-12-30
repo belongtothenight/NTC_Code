@@ -1,0 +1,19 @@
+{
+  "name": "ntc_website",
+  "version": "1.0.0",
+  "description": "Demonstrate how cryptography algorithms work.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belongtothenight/NTC_Code.git"
+  },
+  "author": "Dachuan-Chen",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/belongtothenight/NTC_Code/issues"
+  },
+  "homepage": "https://github.com/belongtothenight/NTC_Code#readme"
+}
