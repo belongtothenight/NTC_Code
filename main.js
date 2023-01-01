@@ -1,7 +1,8 @@
 let aeslib = require('./lib/aes.js');
 console.log('main.js')
 
-const key = '12345678901234567890123456789012';
+// const key = 1234567890123456;
+const key = '1234567890123456';
 const blockSize = 128; // 128, 192, 256
 const iv = false; // 16 bytes (skipped)
 const mode = 'ECB'; // ECB, CBC, CFB, OFB, CTR (skipped)
