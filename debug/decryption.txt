@@ -1,0 +1,29 @@
+R10 input
+28 11 f1 02
+52 99 63 9e
+9c 93 73 ac
+fa 9e ba 15
+
+R10 invShiftRows
+28 11 f1 02
+9e 52 99 63
+73 ac 9c 93
+9e ba 15 fa
+
+R10 subBytes2D
+ee e3 2b 6a
+df 48 f9 00
+8f aa 1c 22
+df c0 2f 14
+
+R10 invMixColumns
+57 02 e0 0f
+3b 12 f5 9e
+f4 d2 0e ff
+f9 03 fa 32
+
+R10 addRoundKey
+11 bb c8 97
+50 2f 19 19
+04 c5 26 d8
+8b 2f 30 6b
