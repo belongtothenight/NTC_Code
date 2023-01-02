@@ -1,6 +1,25 @@
-function testRun() {
+function writeJSONLocalNode(path, data) {
+    var fs = require('fs');
+    fs.writeFile(path, JSON.stringify(data), function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
+}
 
-    let aeslib = require('./lib/aes.js');
+function writeJSONLocalWeb(path, data) {
+    const jsonStr = JSON.stringify(data);
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(jsonStr));
+    element.setAttribute('download', path);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+function testRun(path, path2) {
+
+    let aeslib = require(path);
 
     // const key = 1234567890123456;
     const key = '5445414d53434f525049414e31323334';
@@ -35,7 +54,12 @@ function testRun() {
     Verified with https://www.cryptool.org/en/cto/aes-step-by-step
     Configuration: AES-128, ECB
     */
-
+    console.log(aes.args.record);
+    writeJSONLocalNode(path2, aes.args.record);
+    console.log('Done');
 }
 
-testRun();
+let path1 = './lib/aes.js';
+let path2 = './lib/aes_showcase.js';
+let path3 = './data/1.json';
+testRun(path2, path3);

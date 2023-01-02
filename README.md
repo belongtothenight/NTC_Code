@@ -1,5 +1,13 @@
 # NTC_Code
 
+## Development
+
+1. Use "main.js" to test functions.
+2. Put all the essential files in "./webpage/" to test HTML files.
+3. Put files in "./webpage/" to "./public/" to publish the website.
+
+## Hosting
+
 ### GitHub hosting
 
  1. <https://stackoverflow.com/questions/38480701/can-a-github-wiki-embed-html> (not)
