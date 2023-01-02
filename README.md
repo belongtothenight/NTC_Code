@@ -18,6 +18,10 @@
 1. <https://www.geeksforgeeks.org/advanced-encryption-standard-aes/>
 2. <https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_codebook_(ECB)>
 3. <https://github.com/kokke/tiny-AES-c/blob/master/aes.c>
+4. <https://chat.openai.com/chat>
+5. <https://www.cryptool.org/en/cto/aes-step-by-step>
+6. <https://www.youtube.com/watch?v=-vVEvAG9oSI>
+7. <https://www.youtube.com/watch?v=nC0mjaUZd8w>
 
 ### DES
 
