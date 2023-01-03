@@ -111,6 +111,18 @@
       font-family: Roboto, Helvetica, Arial, sans-serif;
     }
 
+    #message button {
+      float: right;
+      border: 0;
+      color: white;
+      font-size: 18px;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      /* border-radius: 4px; */
+      cursor: pointer;
+      display: block;
+      /* width: 1080px; */
+    }
+
     #message,
     #message a {
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -176,6 +188,7 @@
     <span>
       <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
     </span>
+    <button type="button" id="keySent" name="keygen">Generate Key</button><br>
     <!-- AES Encryption Dropdown -->
     <button type="button" class="collapsible">AES Encryption</button>
     <div class="content">
@@ -253,6 +266,22 @@
 
     // AES Initialization
     console.log("AES Initialization");
+
+    // AES Key
+    var status = false;
+    var key = "input key";
+    document.getElementById('keySent').addEventListener('click', function () {
+      key = document.getElementById('key').value;
+      console.log("AES Key: " + key);
+      var aes = AES(key, 128);
+      if (aes.args.info.hexInputValidation == 'Done') {
+        console.log("AES Key: " + key);
+        status = true;
+      } else {
+        console.log("AES Key: " + aes.args.info.hexInputValidation);
+      }
+    });
+
     // AES Encryption
 
   </script>
