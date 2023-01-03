@@ -184,7 +184,11 @@
     <span>
       <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
     </span>
-    <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Key</button><br>
+    <!-- keySent button -->
+    <label for="keySent" id="keyStatus"></label>
+    <span>
+      <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Key</button><br>
+    </span>
     <!-- AES Encryption Dropdown -->
     <button type="button" class="collapsible">AES Encryption</button>
     <div class="content">
@@ -264,6 +268,26 @@
     // Website initialization
     console.log("Website Initialized");
 
+    // AES Key
+    function keyButton() {
+      var status = false;
+      var key = "input key";
+      key = document.getElementById('key').value;
+      console.log("AES Key: " + key);
+
+      var aes = new AES(key, 128);
+      if (aes.args.info.hexInputValidation == 'Done') {
+        console.log("AES Key: " + key);
+        status = true;
+      } else {
+        console.log("AES Key: " + aes.args.info.hexInputValidation);
+        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+      }
+    }
+
+
+    // AES Encryption
+
     // AES Functions
     function AES(key, blockSize, iv = false, mode = 'ECB', padding = false, outputType = 'String') {
       this.args = {
@@ -321,7 +345,7 @@
         this.init();
       } catch (e) {
         console.log(e);
-        this.args.info.hexInputValidation = e;
+        this.args.info.hexInputValidation = 'Invalid Hex Input';
       }
     };
 
@@ -925,25 +949,7 @@
         console.log('plaintext  ', plaintext);
       }
       return plaintext;
-    };    // AES Key
-
-    function keyButton() {
-      var status = false;
-      var key = "input key";
-      key = document.getElementById('key').value;
-      console.log("AES Key: " + key);
-
-      var aes = new AES(key, 128);
-      if (aes.args.info.hexInputValidation == 'Done') {
-        console.log("AES Key: " + key);
-        status = true;
-      } else {
-        console.log("AES Key: " + aes.args.info.hexInputValidation);
-      }
-    }
-
-
-    // AES Encryption
+    };
 
   </script>
 </body>
