@@ -208,7 +208,7 @@
   </div>
   <p id="load">Firebase SDK Loading&hellip;</p>
   <!-- <script src="./main.js" type="module"></script> -->
-  <script src="./main.js" type="module">
+  <script src="./aes_showcase.js" type="module">
     // Status element.
     document.addEventListener('DOMContentLoaded', function () {
       const loadEl = document.querySelector('#load');
@@ -246,13 +246,16 @@
         loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
       }
 
-      // AES initialization
-      console.log("AES Initialization");
-      console.log('test');
+
 
 
 
     });
+
+    // AES initialization
+    console.log("AES Initialization");
+    import { AES } from './aes_showcase.js';
+    console.log('test');
 
     // // AES Encryption Dropdown Menu
     // var coll = document.getElementsByClassName("collapsible");
