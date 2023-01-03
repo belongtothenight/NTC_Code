@@ -276,15 +276,14 @@
 
     // AES Key
     function keyButton() {
-      var status = false;
-      var key = "input key";
-      key = document.getElementById('key').value;
+      var key = document.getElementById('key').value;
       console.log("AES Key: " + key);
 
+      // Initialize AES with Key
       var aes = new AES(key, 128);
+      // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'Done') {
         console.log("AES Key: " + key);
-        status = true;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
@@ -293,23 +292,25 @@
 
     // AES Encryption
     function plaintextButton() {
-      var status = false;
-      var plaintext = "input plaintext";
-      plaintext = document.getElementById('plaintext').value;
+      var key = document.getElementById('key').value;
+      var plaintext = document.getElementById('plaintext').value;
       console.log("AES Plaintext: " + plaintext);
 
+      // Initialize AES with Key
       var aes = new AES(key, 128);
+      // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'Done') {
         console.log("AES Key: " + key);
-        status = true;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
       }
+
+      // Encrypt plaintext
       let cyphertext = aes.encrypt(plaintext);
+      // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'Done') {
         console.log("AES Plaintext: " + plaintext);
-        status = true;
       } else {
         console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
         document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
