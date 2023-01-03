@@ -1,4 +1,4 @@
-function AES(key, blockSize, iv = false, mode = 'ECB', padding = false, outputType = 'String') {
+export function AES(key, blockSize, iv = false, mode = 'ECB', padding = false, outputType = 'String') {
     /*
     Structure of module. (not updated)
     1. Init
@@ -680,4 +680,3 @@ AES.prototype.decrypt = function (cyphertext) {
 };
 
 // module.exports.AES = AES;
-export default AES;

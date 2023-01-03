@@ -24,9 +24,7 @@
     -->
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
   <!-- load aes library -->
-  <script type="module">
-    import AES from "./aes_showcase.js";
-  </script>
+  <script defer src="./main.js" type="module"></script>
 
   <style media="screen">
     body {
@@ -209,7 +207,7 @@
     </div>
   </div>
   <p id="load">Firebase SDK Loading&hellip;</p>
-
+  <!-- <script src="./main.js" type="module"></script> -->
   <script>
     // Status element.
     document.addEventListener('DOMContentLoaded', function () {
@@ -247,42 +245,51 @@
         console.error(e);
         loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
       }
+
+      // AES initialization
+      console.log("AES Initialization");
+      console.log('test');
+
+
+
     });
 
-    // AES Encryption Dropdown Menu
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-    }
+    // // AES Encryption Dropdown Menu
+    // var coll = document.getElementsByClassName("collapsible");
+    // var i;
+    // for (i = 0; i < coll.length; i++) {
+    //   coll[i].addEventListener("click", function () {
+    //     this.classList.toggle("active");
+    //     var content = this.nextElementSibling;
+    //     if (content.style.display === "block") {
+    //       content.style.display = "none";
+    //     } else {
+    //       content.style.display = "block";
+    //     }
+    //   });
+    // }
 
-    // AES Initialization
-    console.log("AES Initialization");
+    // // AES Initialization
+    // console.log("AES Initialization");
 
-    // AES Key
-    var status = false;
-    var key = "input key";
-    document.getElementById('keySent').addEventListener('click', function () {
-      key = document.getElementById('key').value;
-      console.log("AES Key: " + key);
-      var aes = AES(key, 128);
-      if (aes.args.info.hexInputValidation == 'Done') {
-        console.log("AES Key: " + key);
-        status = true;
-      } else {
-        console.log("AES Key: " + aes.args.info.hexInputValidation);
-      }
-    });
+    // // AES Key
+    // var status = false;
+    // var key = "input key";
+    // document.getElementById('keySent').addEventListener('click', function () {
+    //   key = document.getElementById('key').value;
+    //   console.log("AES Key: " + key);
 
-    // AES Encryption
+
+
+    //   if (aes.args.info.hexInputValidation == 'Done') {
+    //     console.log("AES Key: " + key);
+    //     status = true;
+    //   } else {
+    //     console.log("AES Key: " + aes.args.info.hexInputValidation);
+    //   }
+    // });
+
+    // // AES Encryption
 
   </script>
 </body>
