@@ -98,7 +98,7 @@
       /* position: absolute;
       right: 0; */
       display: block;
-      width: 70%;
+      width: 800px;
       border: 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.3);
       /* padding: 16px 8px; */
@@ -221,17 +221,17 @@
     <!-- AES Decryption Dropdown -->
     <button type="button" class="collapsible">AES Decryption</button>
     <div class="content">
-      <!-- ciphertext input -->
-      <label for="ciphertext">Ciphertext: (16 bytes Hex numbers with no space)</label>
+      <!-- cyphertext input -->
+      <label for="cyphertext">cyphertext: (16 bytes Hex numbers with no space)</label>
       <span>
-        <input type="text" id="ciphertext" name="ciphertext" placeholder="Enter Ciphertext" value="input ciphertext">
+        <input type="text" id="cyphertext" name="cyphertext" placeholder="Enter cyphertext" value="input cyphertext">
       </span>
-      <label for="ciphertextSent" id="ciphertextStatus"></label>
+      <label for="cyphertextSent" id="cyphertextStatus"></label>
       <span>
-        <button type="button" id="ciphertextSent" name="ciphertextSent"
-          onclick="ciphertextButton()">Decrypt</button><br>
+        <button type="button" id="cyphertextSent" name="cyphertextSent"
+          onclick="cyphertextButton()">Decrypt</button><br>
       </span>
-      <p id="ciphertextResult">Round0-10</p>
+      <p id="cyphertextResult">Round0-10</p>
     </div>
   </div>
   <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
@@ -334,7 +334,7 @@
           console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
           document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
         }
-        console.log("AES Ciphertext: " + cyphertext);
+        console.log("AES Cyphertext: " + cyphertext);
       } catch (e) {
         console.error(e);
         document.getElementById('plaintextStatus').innerHTML = 'Error encrypting the plaintext, check the console.';
@@ -346,7 +346,7 @@
     function cyphertextButton() {
       var key = document.getElementById('key').value;
       var cyphertext = document.getElementById('cyphertext').value;
-      console.log("AES Ciphertext: " + cyphertext);
+      console.log("AES Cyphertext: " + cyphertext);
 
       // Initialize AES with Key
       var aes = new AES(key, 128);
@@ -368,7 +368,7 @@
           console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
           document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
         }
-        console.log("AES Ciphertext: " + cyphertext);
+        console.log("AES Cyphertext: " + cyphertext);
       } catch (e) {
         console.error(e);
         document.getElementById('plaintextStatus').innerHTML = 'Error decrypting the cyphertext, check the console.';
@@ -968,7 +968,7 @@
       this.args.record.encrypt['round' + this.args.round + '-3addRoundKey'] = this._byteArrayToHexString(w); // record
       this.args.record.encrypt['round' + this.args.round + '-4output'] = this._byteArrayToHexString(w); // record
 
-      // postprocess ciphertext
+      // postprocess cyphertext
       let cyphertext = this._byteArrayToHexString(w);
       this.args.record.encrypt['cyphertext'] = cyphertext; // record
 
