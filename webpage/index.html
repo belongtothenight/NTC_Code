@@ -321,6 +321,7 @@
         this.init();
       } catch (e) {
         console.log(e);
+        this.args.info.hexInputValidation = e;
       }
     };
 
@@ -663,40 +664,29 @@
       input('string'): hex string
       size('number'): hex string length (default: 16)
       */
-      var status = false;
 
       // check key is string
       if (typeof input !== 'string') {
         this.args.info.hexInputValidation = 'key must be a string';
         // throw new Error('key must be a string');
-        status = false;
-      } else {
-        status = true;
       }
 
       // check string length
       if (input.length !== size * 2) {
         this.args.info.hexInputValidation = 'key length must be ' + size * 2;
         // throw new Error('key length must be ' + size * 2);
-        status = false;
-      } else {
-        status = true;
       }
 
       // check key is hex string
       var regex = /[0-9a-fA-F]{16}/g;
       if (input.match(regex) !== true) {
-        status = true;
       } else {
         this.args.info.hexInputValidation = 'key must be a hex string';
         // throw new Error('key must be a hex string');
-        status = false;
       }
 
       // pass
-      if (status) {
-        this.args.info.hexInputValidation = 'pass';
-      }
+      this.args.info.hexInputValidation = 'pass';
     };
 
     AES.prototype.init = function () {
