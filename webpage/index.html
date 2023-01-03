@@ -211,11 +211,18 @@
       <span>
         <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
       </span>
+      <!-- plaintextSent button -->
       <label for="plaintextSent" id="plaintextStatus"></label>
       <span>
         <button type="button" id="plaintextSent" name="plaintextSent" onclick="plaintextButton()">Encrypt</button><br>
       </span>
-      <p id="plaintextResult">Round0-10</p>
+      <!-- Encryption Process -->
+      <p id="encryptionProcess">Round0-10</p>
+      <!-- plaintextResult -->
+      <label for="plaintextResult">Generated cyphertext: </label>
+      <span>
+        <p id="plaintextResult"></p>
+      </span>
     </div>
 
     <!-- AES Decryption Dropdown -->
@@ -226,12 +233,19 @@
       <span>
         <input type="text" id="cyphertext" name="cyphertext" placeholder="Enter cyphertext" value="input cyphertext">
       </span>
+      <!-- cyphertextSent button -->
       <label for="cyphertextSent" id="cyphertextStatus"></label>
       <span>
         <button type="button" id="cyphertextSent" name="cyphertextSent"
           onclick="cyphertextButton()">Decrypt</button><br>
       </span>
-      <p id="cyphertextResult">Round0-10</p>
+      <!-- Decryption Process -->
+      <p id="decryptionProcess">Round0-10</p>
+      <!-- cyphertextResult -->
+      <label for="cyphertextResult">Generated plaintext: </label>
+      <span>
+        <p id="cyphertextResult"></p>
+      </span>
     </div>
   </div>
   <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
@@ -340,6 +354,8 @@
         document.getElementById('plaintextStatus').innerHTML = 'Error encrypting the plaintext, check the console.';
       }
 
+      document.getElementById('plaintextResult').value = cyphertext;
+
     }
 
     // AES Decryption
@@ -373,6 +389,8 @@
         console.error(e);
         document.getElementById('cyphertextStatus').innerHTML = 'Error decrypting the cyphertext, check the console.';
       }
+
+      document.getElementById('cyphertextResult').value = plaintext;
 
     }
 
