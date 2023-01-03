@@ -37,7 +37,7 @@
 
     #message {
       background: white;
-      max-width: 360px;
+      max-width: 1080;
       margin: 100px auto 16px;
       padding: 32px 24px;
       border-radius: 3px;
@@ -74,6 +74,41 @@
       border-radius: 4px;
     }
 
+    #message label {
+      /* color: rgba(0, 0, 0, 0.3);
+      display: inline-block;
+      margin-left: 24px;
+      margin-top: 8px; */
+      float: left;
+    }
+
+    #message span {
+      /* display: inline-block;
+      margin-left: 24px;
+      margin-top: 8px; */
+      display: block;
+      overflow: hidden;
+      /* padding: 0px 4px 0px 6px; */
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    #message input {
+      /* text-align: right; */
+      float: right;
+      /* margin-left: auto; */
+      /* position: absolute;
+      right: 0; */
+      display: block;
+      width: 70%;
+      border: 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+      /* padding: 16px 8px; */
+      box-sizing: border-box;
+      color: rgba(0, 0, 0, 0.3);
+      font-size: 18px;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+    }
+
     #message,
     #message a {
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -85,7 +120,7 @@
       font-size: 13px;
     }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1920px) {
 
       body,
       #message {
@@ -133,6 +168,22 @@
     <!-- title -->
     <h1>Advance Encryption Standard</h1>
     <h2>AES-128bit, ECB mode</h2>
+    <p>All the following input should be 16 bytes Hex.</p>
+    <!-- key input -->
+    <label for="key">Key:</label>
+    <span>
+      <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
+    </span>
+    <!-- plaintext input -->
+    <label for="plaintext">Plaintext:</label>
+    <span>
+      <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
+    </span>
+    <!-- ciphertext input -->
+    <label for="ciphertext">Ciphertext:</label>
+    <span>
+      <input type="text" id="ciphertext" name="ciphertext" placeholder="Enter Ciphertext" value="input ciphertext">
+    </span>
     <!-- AES Encryption Dropdown -->
     <button type="button" class="collapsible">AES Encryption</button>
     <div class="content">
