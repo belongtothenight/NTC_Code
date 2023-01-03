@@ -44,12 +44,12 @@
     #message h2 {
       color: #ffa100;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 20px;
       margin: 0 0 8px;
     }
 
     #message h1 {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 300;
       color: rgba(0, 0, 0, 0.6);
       margin: 0 0 16px;
@@ -58,7 +58,7 @@
     #message p {
       line-height: 140%;
       margin: 16px 0 24px;
-      font-size: 14px;
+      font-size: 18px;
     }
 
     #message a {
@@ -78,6 +78,7 @@
       margin-left: 24px;
       margin-top: 8px; */
       float: left;
+      font-size: 18px;
     }
 
     #message span {
@@ -109,6 +110,18 @@
 
     #message button {
       float: right;
+      border: 0;
+      color: white;
+      font-size: 18px;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      /* border-radius: 4px; */
+      cursor: pointer;
+      display: block;
+      /* width: 1080px; */
+    }
+
+    #message text {
+      float: left;
       border: 0;
       color: white;
       font-size: 18px;
@@ -194,7 +207,7 @@
     <button type="button" class="collapsible">AES Encryption</button>
     <div class="content">
       <!-- plaintext input -->
-      <label for="plaintext">Plaintext:</label>
+      <label for="plaintext">Plaintext: (16 bytes Hex numbers with no space)</label>
       <span>
         <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
       </span>
@@ -202,59 +215,64 @@
       <span>
         <button type="button" id="plaintextSent" name="plaintextSent" onclick="plaintextButton()">Encrypt</button><br>
       </span>
+      <p id="plaintextResult">Round0-10</p>
     </div>
 
     <!-- AES Decryption Dropdown -->
     <button type="button" class="collapsible">AES Decryption</button>
     <div class="content">
       <!-- ciphertext input -->
-      <label for="ciphertext">Ciphertext:</label>
+      <label for="ciphertext">Ciphertext: (16 bytes Hex numbers with no space)</label>
       <span>
         <input type="text" id="ciphertext" name="ciphertext" placeholder="Enter Ciphertext" value="input ciphertext">
       </span>
+      <label for="ciphertextSent" id="ciphertextStatus"></label>
+      <span>
+        <button type="button" id="ciphertextSent" name="ciphertextSent"
+          onclick="ciphertextButton()">Decrypt</button><br>
+      </span>
+      <p id="ciphertextResult">Round0-10</p>
     </div>
   </div>
-  <p id="load">Firebase SDK Loading&hellip;</p>
-  <!-- <script src="./main.js" type="module"></script> -->
+  <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
   <script>
-    // Status element.
-    document.addEventListener('DOMContentLoaded', function () {
-      const loadEl = document.querySelector('#load');
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      // // The Firebase SDK is initialized and available here!
-      //
-      // firebase.auth().onAuthStateChanged(user => { });
-      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-      // firebase.firestore().doc('/foo/bar').get().then(() => { });
-      // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-      // firebase.messaging().requestPermission().then(() => { });
-      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-      // firebase.analytics(); // call to activate
-      // firebase.analytics().logEvent('tutorial_completed');
-      // firebase.performance(); // call to activate
-      //
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   const loadEl = document.querySelector('#load');
+    //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    //   // // The Firebase SDK is initialized and available here!
+    //   //
+    //   // firebase.auth().onAuthStateChanged(user => { });
+    //   // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+    //   // firebase.firestore().doc('/foo/bar').get().then(() => { });
+    //   // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+    //   // firebase.messaging().requestPermission().then(() => { });
+    //   // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+    //   // firebase.analytics(); // call to activate
+    //   // firebase.analytics().logEvent('tutorial_completed');
+    //   // firebase.performance(); // call to activate
+    //   //
+    //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-      try {
-        let app = firebase.app();
-        let features = [
-          'auth',
-          'database',
-          'firestore',
-          'functions',
-          'messaging',
-          'storage',
-          'analytics',
-          'remoteConfig',
-          'performance',
-        ].filter(feature => typeof app[feature] === 'function');
-        loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-      } catch (e) {
-        console.error(e);
-        loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-      }
+    //   try {
+    //     let app = firebase.app();
+    //     let features = [
+    //       'auth',
+    //       'database',
+    //       'firestore',
+    //       'functions',
+    //       'messaging',
+    //       'storage',
+    //       'analytics',
+    //       'remoteConfig',
+    //       'performance',
+    //     ].filter(feature => typeof app[feature] === 'function');
+    //     loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+    //   } catch (e) {
+    //     console.error(e);
+    //     loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+    //   }
 
-    });
+    // });
 
     // AES Encryption Dropdown Menu
     var coll = document.getElementsByClassName("collapsible");
@@ -320,6 +338,40 @@
       } catch (e) {
         console.error(e);
         document.getElementById('plaintextStatus').innerHTML = 'Error encrypting the plaintext, check the console.';
+      }
+
+    }
+
+    // AES Decryption
+    function cyphertextButton() {
+      var key = document.getElementById('key').value;
+      var cyphertext = document.getElementById('cyphertext').value;
+      console.log("AES Ciphertext: " + cyphertext);
+
+      // Initialize AES with Key
+      var aes = new AES(key, 128);
+      // get key status (Done or Error)
+      if (aes.args.info.hexInputValidation == 'Done') {
+        console.log("AES Key: " + key);
+      } else {
+        console.log("AES Key: " + aes.args.info.hexInputValidation);
+        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+      }
+
+      try {
+        // Decrypt cyphertext
+        let plaintext = aes.decrypt(cyphertext);
+        // get plaintext status (Done or Error)
+        if (aes.args.info.hexInputValidation == 'Done') {
+          console.log("AES Plaintext: " + plaintext);
+        } else {
+          console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
+          document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+        }
+        console.log("AES Ciphertext: " + cyphertext);
+      } catch (e) {
+        console.error(e);
+        document.getElementById('plaintextStatus').innerHTML = 'Error decrypting the cyphertext, check the console.';
       }
 
     }
