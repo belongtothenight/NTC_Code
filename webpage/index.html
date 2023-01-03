@@ -316,9 +316,9 @@
         console.log('arg padding: ' + this.args.padding);
         console.log('arg outputType: ' + this.args.outputType);
       }
-      this.init();
       try {
         this.keyExpansion();
+        this.init();
       } catch (e) {
         console.log(e);
       }
