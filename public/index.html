@@ -24,7 +24,7 @@
     -->
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
   <!-- load aes library -->
-  <script src="aes_showcase.js"></script>
+  <script src="./aes_showcase.js"></script>
 
   <style media="screen">
     body {
@@ -99,7 +99,7 @@
       /* position: absolute;
       right: 0; */
       display: block;
-      width: 70%;
+      width: 1080px;
       border: 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.3);
       /* padding: 16px 8px; */
@@ -174,25 +174,23 @@
     <span>
       <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
     </span>
-    <!-- plaintext input -->
-    <label for="plaintext">Plaintext:</label>
-    <span>
-      <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
-    </span>
-    <!-- ciphertext input -->
-    <label for="ciphertext">Ciphertext:</label>
-    <span>
-      <input type="text" id="ciphertext" name="ciphertext" placeholder="Enter Ciphertext" value="input ciphertext">
-    </span>
     <!-- AES Encryption Dropdown -->
     <button type="button" class="collapsible">AES Encryption</button>
     <div class="content">
-      <p>Lorem ipsum...</p>
+      <!-- plaintext input -->
+      <label for="plaintext">Plaintext:</label>
+      <span>
+        <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
+      </span>
     </div>
     <!-- AES Decryption Dropdown -->
     <button type="button" class="collapsible">AES Decryption</button>
     <div class="content">
-      <p>Lorem ipsum...</p>
+      <!-- ciphertext input -->
+      <label for="ciphertext">Ciphertext:</label>
+      <span>
+        <input type="text" id="ciphertext" name="ciphertext" placeholder="Enter Ciphertext" value="input ciphertext">
+      </span>
     </div>
   </div>
   <p id="load">Firebase SDK Loading&hellip;</p>
@@ -249,7 +247,12 @@
           content.style.display = "block";
         }
       });
-    } 
+    }
+
+    // AES Initialization
+    console.log("AES Initialization");
+    // AES Encryption
+
   </script>
 </body>
 
