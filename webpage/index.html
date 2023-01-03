@@ -298,7 +298,14 @@
       plaintext = document.getElementById('plaintext').value;
       console.log("AES Plaintext: " + plaintext);
 
-      // var aes = new AES(key, 128);
+      var aes = new AES(key, 128);
+      if (aes.args.info.hexInputValidation == 'Done') {
+        console.log("AES Key: " + key);
+        status = true;
+      } else {
+        console.log("AES Key: " + aes.args.info.hexInputValidation);
+        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+      }
       let cyphertext = aes.encrypt(plaintext);
       if (aes.args.info.hexInputValidation == 'Done') {
         console.log("AES Plaintext: " + plaintext);
