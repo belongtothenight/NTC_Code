@@ -178,9 +178,9 @@
     <!-- title -->
     <h1>Advance Encryption Standard</h1>
     <h2>AES-128bit, ECB mode</h2>
-    <p>All the following input should be 16 bytes Hex.</p>
+
     <!-- key input -->
-    <label for="key">Key:</label>
+    <label for="key">Key: (16 bytes Hex numbers with no space)</label>
     <span>
       <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
     </span>
@@ -189,6 +189,7 @@
     <span>
       <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Key</button><br>
     </span>
+
     <!-- AES Encryption Dropdown -->
     <button type="button" class="collapsible">AES Encryption</button>
     <div class="content">
@@ -197,7 +198,12 @@
       <span>
         <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
       </span>
+      <label for="plaintextSent" id="plaintextStatus"></label>
+      <span>
+        <button type="button" id="plaintextSent" name="plaintextSent" onclick="plaintextButton()">Encrypt</button><br>
+      </span>
     </div>
+
     <!-- AES Decryption Dropdown -->
     <button type="button" class="collapsible">AES Decryption</button>
     <div class="content">
@@ -285,8 +291,24 @@
       }
     }
 
-
     // AES Encryption
+    function plaintextButton() {
+      var status = false;
+      var plaintext = "input plaintext";
+      plaintext = document.getElementById('plaintext').value;
+      console.log("AES Plaintext: " + plaintext);
+
+      // var aes = new AES(key, 128);
+      let cyphertext = aes.encrypt(plaintext);
+      if (aes.args.info.hexInputValidation == 'Done') {
+        console.log("AES Plaintext: " + plaintext);
+        status = true;
+      } else {
+        console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
+        document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+      }
+      console.log("AES Ciphertext: " + cyphertext);
+    }
 
     // AES Functions
     function AES(key, blockSize, iv = false, mode = 'ECB', padding = false, outputType = 'String') {
