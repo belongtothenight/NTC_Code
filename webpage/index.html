@@ -659,17 +659,18 @@
       input('string'): hex string
       size('number'): hex string length (default: 16)
       */
-      // check key is string
-      if (typeof input !== 'string') {
-        this.args.info.hexInputValidation = 'key must be a string';
-        // throw new Error('key must be a string');
-        throw '';
-      }
 
       // check string length
       if (input.length !== size * 2) {
         this.args.info.hexInputValidation = 'key length must be ' + size * 2;
         // throw new Error('key length must be ' + size * 2);
+        throw '';
+      }
+
+      // check key is string
+      if (typeof input !== 'string') {
+        this.args.info.hexInputValidation = 'key must be a string';
+        // throw new Error('key must be a string');
         throw '';
       }
 
