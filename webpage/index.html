@@ -930,9 +930,8 @@
       key = document.getElementById('key').value;
       console.log("AES Key: " + key);
 
-      var aes = new AES._hexInputValidation(key, 16);
-      console.log("AES Key: " + aes.args.info.hexInputValidation);
-      // aes._hexInputValidation(key, 16);
+      var aes = new AES(key, 128);
+      console.log('AES Key: ' + aes.args.info.hexInputValidation)
 
       // if (aes.args.info.hexInputValidation == 'Done') {
       //   console.log("AES Key: " + key);
