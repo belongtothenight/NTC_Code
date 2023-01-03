@@ -17,7 +17,7 @@ function writeJSONLocalWeb(path, data) {
     document.body.removeChild(element);
 }
 
-function testRun(path, path2) {
+function testRun(path, path2, path3) {
 
     let aeslib = require(path);
 
@@ -56,10 +56,13 @@ function testRun(path, path2) {
     */
     console.log(aes.args.record);
     writeJSONLocalNode(path2, aes.args.record);
+    console.log(aes.args.info);
+    writeJSONLocalNode(path3, aes.args.info);
     console.log('Done');
 }
 
 let path1 = './lib/aes.js';
 let path2 = './lib/aes_showcase.js';
-let path3 = './data/1.json';
-testRun(path2, path3);
+let path3 = './data/record.json';
+let path4 = './data/info.json';
+testRun(path2, path3, path4);
