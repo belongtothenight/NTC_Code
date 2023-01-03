@@ -317,7 +317,11 @@
         console.log('arg outputType: ' + this.args.outputType);
       }
       this.init();
-      this.keyExpansion();
+      try {
+        this.keyExpansion();
+      } catch (e) {
+        console.log(e);
+      }
     };
 
     AES.prototype._hexStringToByteArray = function (input, reArrange = false) {
