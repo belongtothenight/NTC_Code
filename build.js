@@ -33,9 +33,9 @@ function copyFiles(src, dst) {
     }
 }
 
-// move all files
+// 1. move all files
 let path1 = "/webpage/";
 let path2 = "/public/";
 copyFiles(path1, path2);
 
-// check files
+// 2. check files
