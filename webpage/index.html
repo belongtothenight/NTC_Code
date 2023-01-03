@@ -363,15 +363,15 @@
         let plaintext = aes.decrypt(cyphertext);
         // get plaintext status (Done or Error)
         if (aes.args.info.hexInputValidation == 'Done') {
-          console.log("AES Plaintext: " + plaintext);
+          console.log("AES Cyphertext: " + cyphertext);
         } else {
-          console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
-          document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+          console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
+          document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
         }
-        console.log("AES Cyphertext: " + cyphertext);
+        console.log("AES Plaintext: " + cyphertext);
       } catch (e) {
         console.error(e);
-        document.getElementById('plaintextStatus').innerHTML = 'Error decrypting the cyphertext, check the console.';
+        document.getElementById('cyphertextStatus').innerHTML = 'Error decrypting the cyphertext, check the console.';
       }
 
     }
