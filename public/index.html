@@ -23,9 +23,6 @@
       to avoid connecting the SDK to running emulators.
     -->
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-  <!-- load aes library -->
-  <!-- <script defer src="./main.js" type="module"></script> -->
-  <script defer src="./aes_showcase.js" type="module"></script>
 
   <style media="screen">
     body {
@@ -47,12 +44,12 @@
     #message h2 {
       color: #ffa100;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 20px;
       margin: 0 0 8px;
     }
 
     #message h1 {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 300;
       color: rgba(0, 0, 0, 0.6);
       margin: 0 0 16px;
@@ -61,7 +58,7 @@
     #message p {
       line-height: 140%;
       margin: 16px 0 24px;
-      font-size: 14px;
+      font-size: 18px;
     }
 
     #message a {
@@ -81,6 +78,7 @@
       margin-left: 24px;
       margin-top: 8px; */
       float: left;
+      font-size: 18px;
     }
 
     #message span {
@@ -100,7 +98,7 @@
       /* position: absolute;
       right: 0; */
       display: block;
-      width: 1080px;
+      width: 800px;
       border: 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.3);
       /* padding: 16px 8px; */
@@ -112,6 +110,18 @@
 
     #message button {
       float: right;
+      border: 0;
+      color: white;
+      font-size: 18px;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      /* border-radius: 4px; */
+      cursor: pointer;
+      display: block;
+      /* width: 1080px; */
+    }
+
+    #message text {
+      float: left;
       border: 0;
       color: white;
       font-size: 18px;
@@ -181,73 +191,102 @@
     <!-- title -->
     <h1>Advance Encryption Standard</h1>
     <h2>AES-128bit, ECB mode</h2>
-    <p>All the following input should be 16 bytes Hex.</p>
+
     <!-- key input -->
-    <label for="key">Key:</label>
+    <label for="key">Key: (16 bytes Hex numbers with no space)</label>
     <span>
       <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
     </span>
-    <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Key</button><br>
+    <!-- keySent button -->
+    <label for="keySent" id="keyStatus"></label>
+    <span>
+      <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Key</button><br>
+    </span>
+
     <!-- AES Encryption Dropdown -->
     <button type="button" class="collapsible">AES Encryption</button>
     <div class="content">
       <!-- plaintext input -->
-      <label for="plaintext">Plaintext:</label>
+      <label for="plaintext">Plaintext: (16 bytes Hex numbers with no space)</label>
       <span>
         <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
       </span>
+      <!-- plaintextSent button -->
+      <label for="plaintextSent" id="plaintextStatus"></label>
+      <span>
+        <button type="button" id="plaintextSent" name="plaintextSent" onclick="plaintextButton()">Encrypt</button><br>
+      </span>
+      <!-- Encryption Process -->
+      <p id="encryptionProcess">Round0-10</p>
+      <!-- plaintextResult -->
+      <label for="plaintextResult">Generated cyphertext: </label>
+      <span>
+        <p id="plaintextResult"></p>
+      </span>
     </div>
+
     <!-- AES Decryption Dropdown -->
     <button type="button" class="collapsible">AES Decryption</button>
     <div class="content">
-      <!-- ciphertext input -->
-      <label for="ciphertext">Ciphertext:</label>
+      <!-- cyphertext input -->
+      <label for="cyphertext">cyphertext: (16 bytes Hex numbers with no space)</label>
       <span>
-        <input type="text" id="ciphertext" name="ciphertext" placeholder="Enter Ciphertext" value="input ciphertext">
+        <input type="text" id="cyphertext" name="cyphertext" placeholder="Enter cyphertext" value="input cyphertext">
+      </span>
+      <!-- cyphertextSent button -->
+      <label for="cyphertextSent" id="cyphertextStatus"></label>
+      <span>
+        <button type="button" id="cyphertextSent" name="cyphertextSent"
+          onclick="cyphertextButton()">Decrypt</button><br>
+      </span>
+      <!-- Decryption Process -->
+      <p id="decryptionProcess">Round0-10</p>
+      <!-- cyphertextResult -->
+      <label for="cyphertextResult">Generated plaintext: </label>
+      <span>
+        <p id="cyphertextResult"></p>
       </span>
     </div>
   </div>
-  <p id="load">Firebase SDK Loading&hellip;</p>
-  <!-- <script src="./main.js" type="module"></script> -->
+  <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
   <script>
-    // Status element.
-    document.addEventListener('DOMContentLoaded', function () {
-      const loadEl = document.querySelector('#load');
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      // // The Firebase SDK is initialized and available here!
-      //
-      // firebase.auth().onAuthStateChanged(user => { });
-      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-      // firebase.firestore().doc('/foo/bar').get().then(() => { });
-      // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-      // firebase.messaging().requestPermission().then(() => { });
-      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-      // firebase.analytics(); // call to activate
-      // firebase.analytics().logEvent('tutorial_completed');
-      // firebase.performance(); // call to activate
-      //
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   const loadEl = document.querySelector('#load');
+    //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    //   // // The Firebase SDK is initialized and available here!
+    //   //
+    //   // firebase.auth().onAuthStateChanged(user => { });
+    //   // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+    //   // firebase.firestore().doc('/foo/bar').get().then(() => { });
+    //   // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+    //   // firebase.messaging().requestPermission().then(() => { });
+    //   // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+    //   // firebase.analytics(); // call to activate
+    //   // firebase.analytics().logEvent('tutorial_completed');
+    //   // firebase.performance(); // call to activate
+    //   //
+    //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-      try {
-        let app = firebase.app();
-        let features = [
-          'auth',
-          'database',
-          'firestore',
-          'functions',
-          'messaging',
-          'storage',
-          'analytics',
-          'remoteConfig',
-          'performance',
-        ].filter(feature => typeof app[feature] === 'function');
-        loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-      } catch (e) {
-        console.error(e);
-        loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-      }
+    //   try {
+    //     let app = firebase.app();
+    //     let features = [
+    //       'auth',
+    //       'database',
+    //       'firestore',
+    //       'functions',
+    //       'messaging',
+    //       'storage',
+    //       'analytics',
+    //       'remoteConfig',
+    //       'performance',
+    //     ].filter(feature => typeof app[feature] === 'function');
+    //     loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+    //   } catch (e) {
+    //     console.error(e);
+    //     loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+    //   }
 
-    });
+    // });
 
     // AES Encryption Dropdown Menu
     var coll = document.getElementsByClassName("collapsible");
@@ -266,6 +305,94 @@
 
     // Website initialization
     console.log("Website Initialized");
+
+    // AES Key
+    function keyButton() {
+      var key = document.getElementById('key').value;
+      console.log("AES Key: " + key);
+
+      // Initialize AES with Key
+      var aes = new AES(key, 128);
+      // get key status (Done or Error)
+      if (aes.args.info.hexInputValidation == 'Done') {
+        console.log("AES Key: " + key);
+      } else {
+        console.log("AES Key: " + aes.args.info.hexInputValidation);
+        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+      }
+    }
+
+    // AES Encryption
+    function plaintextButton() {
+      var key = document.getElementById('key').value;
+      var plaintext = document.getElementById('plaintext').value;
+      console.log("AES Plaintext: " + plaintext);
+
+      // Initialize AES with Key
+      var aes = new AES(key, 128);
+      // get key status (Done or Error)
+      if (aes.args.info.hexInputValidation == 'Done') {
+        console.log("AES Key: " + key);
+      } else {
+        console.log("AES Key: " + aes.args.info.hexInputValidation);
+        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+      }
+
+      try {
+        // Encrypt plaintext
+        let cyphertext = aes.encrypt(plaintext);
+        // get plaintext status (Done or Error)
+        if (aes.args.info.hexInputValidation == 'Done') {
+          console.log("AES Plaintext: " + plaintext);
+        } else {
+          console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
+          document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+        }
+        console.log("AES Cyphertext: " + cyphertext);
+      } catch (e) {
+        console.error(e);
+        document.getElementById('plaintextStatus').innerHTML = 'Error encrypting the plaintext, check the console.';
+      }
+
+      document.getElementById('plaintextResult').value = cyphertext;
+
+    }
+
+    // AES Decryption
+    function cyphertextButton() {
+      var key = document.getElementById('key').value;
+      var cyphertext = document.getElementById('cyphertext').value;
+      console.log("AES Cyphertext: " + cyphertext);
+
+      // Initialize AES with Key
+      var aes = new AES(key, 128);
+      // get key status (Done or Error)
+      if (aes.args.info.hexInputValidation == 'Done') {
+        console.log("AES Key: " + key);
+      } else {
+        console.log("AES Key: " + aes.args.info.hexInputValidation);
+        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+      }
+
+      try {
+        // Decrypt cyphertext
+        let plaintext = aes.decrypt(cyphertext);
+        // get plaintext status (Done or Error)
+        if (aes.args.info.hexInputValidation == 'Done') {
+          console.log("AES Cyphertext: " + cyphertext);
+        } else {
+          console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
+          document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
+        }
+        console.log("AES Plaintext: " + cyphertext);
+      } catch (e) {
+        console.error(e);
+        document.getElementById('cyphertextStatus').innerHTML = 'Error decrypting the cyphertext, check the console.';
+      }
+
+      document.getElementById('cyphertextResult').value = plaintext;
+
+    }
 
     // AES Functions
     function AES(key, blockSize, iv = false, mode = 'ECB', padding = false, outputType = 'String') {
@@ -291,7 +418,7 @@
           'decrypt': {},
         },
         info: {
-          'hexInputValidation': {},
+          'hexInputValidation': '',
         }
       }
       this.print = {
@@ -319,8 +446,13 @@
         console.log('arg padding: ' + this.args.padding);
         console.log('arg outputType: ' + this.args.outputType);
       }
-      this.init();
-      this.keyExpansion();
+      try {
+        this.keyExpansion();
+        this.init();
+      } catch (e) {
+        console.log(e);
+        this.args.info.hexInputValidation = 'Invalid Hex Input';
+      }
     };
 
     AES.prototype._hexStringToByteArray = function (input, reArrange = false) {
@@ -662,18 +794,17 @@
       input('string'): hex string
       size('number'): hex string length (default: 16)
       */
+
       // check key is string
       if (typeof input !== 'string') {
         this.args.info.hexInputValidation = 'key must be a string';
         // throw new Error('key must be a string');
-        throw '';
       }
 
       // check string length
       if (input.length !== size * 2) {
         this.args.info.hexInputValidation = 'key length must be ' + size * 2;
         // throw new Error('key length must be ' + size * 2);
-        throw '';
       }
 
       // check key is hex string
@@ -682,7 +813,6 @@
       } else {
         this.args.info.hexInputValidation = 'key must be a hex string';
         // throw new Error('key must be a hex string');
-        throw '';
       }
 
       // pass
@@ -856,7 +986,7 @@
       this.args.record.encrypt['round' + this.args.round + '-3addRoundKey'] = this._byteArrayToHexString(w); // record
       this.args.record.encrypt['round' + this.args.round + '-4output'] = this._byteArrayToHexString(w); // record
 
-      // postprocess ciphertext
+      // postprocess cyphertext
       let cyphertext = this._byteArrayToHexString(w);
       this.args.record.encrypt['cyphertext'] = cyphertext; // record
 
@@ -925,26 +1055,7 @@
         console.log('plaintext  ', plaintext);
       }
       return plaintext;
-    };    // AES Key
-
-    function keyButton() {
-      var status = false;
-      var key = "input key";
-      key = document.getElementById('key').value;
-      console.log("AES Key: " + key);
-
-      var aes = new AES();
-
-      // if (aes.args.info.hexInputValidation == 'Done') {
-      //   console.log("AES Key: " + key);
-      //   status = true;
-      // } else {
-      //   console.log("AES Key: " + aes.args.info.hexInputValidation);
-      // }
-    }
-
-
-    // AES Encryption
+    };
 
   </script>
 </body>
