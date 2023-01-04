@@ -218,7 +218,7 @@
         <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
       </span>
       <!-- plaintextSent button -->
-      <label for="plaintextSent" id="plaintextStatus"></label>
+      <label for="plaintextSent" id="plaintextStatus">Plaintext status: </label>
       <span>
         <button type="button" id="plaintextSent" name="plaintextSent" onclick="plaintextButton()">Encrypt</button><br>
       </span>
@@ -242,7 +242,7 @@
         <input type="text" id="cyphertext" name="cyphertext" placeholder="Enter cyphertext" value="input cyphertext">
       </span>
       <!-- cyphertextSent button -->
-      <label for="cyphertextSent" id="cyphertextStatus"></label>
+      <label for="cyphertextSent" id="cyphertextStatus">Cyphertext status: </label>
       <span>
         <button type="button" id="cyphertextSent" name="cyphertextSent"
           onclick="cyphertextButton()">Decrypt</button><br>
@@ -382,11 +382,11 @@
       // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Cyphertext: " + cyphertext);
-        document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
         document.getElementById('plaintextResult').innerHTML = cyphertext;
       } else {
         console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
-        document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
       }
     }
 
@@ -413,11 +413,11 @@
       // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Plaintext: " + plaintext);
-        document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
         document.getElementById('cyphertextResult').innerHTML = plaintext;
       } else {
         console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
-        document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
       }
     }
 
