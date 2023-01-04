@@ -814,9 +814,10 @@
       }
       ///////////////////
       var v = input.match(/[0-9a-fA-F]{2}/g);
+      var cv = v.join('');
       console.log('input match', v);
-      console.log('input match length', v.length);
-      if (v !== null) {
+      console.log('input match join', cv);
+      if (v === cv) {
         console.log('input is hex string');
       } else {
         console.log('input is not hex string');
