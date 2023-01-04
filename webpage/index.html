@@ -372,7 +372,8 @@
         // get plaintext status (Done or Error)
         if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Plaintext: " + plaintext);
-          document.getElementById('plaintextStatus').innerHTML = plaintext;
+          document.getElementById('plaintextStatus').innerHTML = 'pass';
+          document.getElementById('plaintextResult').innerHTML = cyphertext;
         } else {
           console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
           document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
@@ -382,9 +383,6 @@
         console.error(e);
         document.getElementById('plaintextStatus').innerHTML = 'Error encrypting the plaintext, check the console.';
       }
-
-      document.getElementById('plaintextResult').value = cyphertext;
-
     }
 
     // AES Decryption
