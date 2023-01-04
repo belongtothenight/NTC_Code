@@ -367,21 +367,16 @@
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
       }
 
-      try {
-        // Encrypt plaintext
-        let cyphertext = aes.encrypt(plaintext);
-        // get plaintext status (Done or Error)
-        if (aes.args.info.hexInputValidation == 'pass') {
-          console.log("AES Cyphertext: " + cyphertext);
-          document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
-          document.getElementById('plaintextResult').innerHTML = cyphertext;
-        } else {
-          console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
-          document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
-        }
-      } catch (e) {
-        console.error(e);
-        document.getElementById('plaintextStatus').innerHTML = 'Error encrypting the plaintext, check the console.';
+      // Encrypt plaintext
+      let cyphertext = aes.encrypt(plaintext);
+      // get plaintext status (Done or Error)
+      if (aes.args.info.hexInputValidation == 'pass') {
+        console.log("AES Cyphertext: " + cyphertext);
+        document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('plaintextResult').innerHTML = cyphertext;
+      } else {
+        console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
+        document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
       }
     }
 
@@ -402,21 +397,16 @@
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
       }
 
-      try {
-        // Decrypt cyphertext
-        let plaintext = aes.decrypt(cyphertext);
-        // get plaintext status (Done or Error)
-        if (aes.args.info.hexInputValidation == 'pass') {
-          console.log("AES Plaintext: " + plaintext);
-          document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
-          document.getElementById('cyphertextResult').innerHTML = plaintext;
-        } else {
-          console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
-          document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
-        }
-      } catch (e) {
-        console.error(e);
-        document.getElementById('cyphertextStatus').innerHTML = 'Error decrypting the cyphertext, check the console.';
+      // Decrypt cyphertext
+      let plaintext = aes.decrypt(cyphertext);
+      // get plaintext status (Done or Error)
+      if (aes.args.info.hexInputValidation == 'pass') {
+        console.log("AES Plaintext: " + plaintext);
+        document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('cyphertextResult').innerHTML = plaintext;
+      } else {
+        console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
+        document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
       }
     }
 
@@ -472,13 +462,13 @@
         console.log('arg padding: ' + this.args.padding);
         console.log('arg outputType: ' + this.args.outputType);
       }
-      try {
-        this.init();
-        this.keyExpansion();
-      } catch (e) {
-        console.log(e);
-        this.args.info.hexInputValidation = 'Invalid Hex Input';
-      }
+      // try {
+      this.init();
+      this.keyExpansion();
+      // } catch (e) {
+      //   console.log(e);
+      //   this.args.info.hexInputValidation = 'Invalid Hex Input';
+      // }
     };
 
     AES.prototype._hexStringToByteArray = function (input, reArrange = false) {
