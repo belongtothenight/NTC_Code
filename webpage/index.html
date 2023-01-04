@@ -316,9 +316,7 @@
       var aes = new AES(key, 128);
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
-        console.log("AES Key: " + key);
-        console.log("AES Expanded Key: " + aes._byteArrayToHexString(aes.args.key));
-        document.getElementById('keyStatus').innerHTML = '' +
+        var expandedAESKey = '' +
           aes.args.record.keyExpansion.key0 + '\n' +
           aes.args.record.keyExpansion.key1 + '\n' +
           aes.args.record.keyExpansion.key2 + '\n' +
@@ -330,6 +328,9 @@
           aes.args.record.keyExpansion.key8 + '\n' +
           aes.args.record.keyExpansion.key9 + '\n' +
           aes.args.record.keyExpansion.key10;
+        console.log("AES Key: " + key);
+        console.log("AES Expanded Key: " + expandedAESKey);
+        document.getElementById('keyStatus').innerHTML = expandedAESKey;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
