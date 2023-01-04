@@ -187,16 +187,26 @@
     <h1>Advance Encryption Standard Demonstration</h1>
     <h2>AES-128bit, ECB mode</h2>
 
-    <!-- key input -->
-    <label for="key">Key: (16 bytes Hex numbers with no space)</label>
-    <span>
-      <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
-    </span>
-    <!-- keySent button -->
-    <label for="keySent" id="keyStatus"></label>
-    <span>
-      <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Expanded Key</button><br>
-    </span>
+    <!-- AES Key Expansion-->
+    <button type="button" class="collapsible">AES Key Expansion</button>
+    <div class="content">
+      <br>
+      <!-- key input -->
+      <label for="key">Key: (16 bytes Hex numbers with no space)</label>
+      <span>
+        <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
+      </span>
+      <!-- keySent button -->
+      <label for="keySent" id="keyStatus"></label>
+      <span>
+        <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Expanded Key</button><br>
+      </span>
+      <!-- keyResult -->
+      <label for="keyResult">Expanded Key: </label>
+      <span>
+        <text id="keyResult"></text>
+      </span>
+    </div>
 
     <!-- AES Encryption Dropdown -->
     <button type="button" class="collapsible">AES Encryption</button>
