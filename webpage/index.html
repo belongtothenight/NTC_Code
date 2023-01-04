@@ -335,7 +335,7 @@
       // Initialize AES with Key
       var aes = new AES(key, 128);
       // get key status (Done or Error)
-      if (aes.args.info.hexInputValidation == 'Done') {
+      if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
@@ -346,7 +346,7 @@
         // Encrypt plaintext
         let cyphertext = aes.encrypt(plaintext);
         // get plaintext status (Done or Error)
-        if (aes.args.info.hexInputValidation == 'Done') {
+        if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Plaintext: " + plaintext);
         } else {
           console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
@@ -371,7 +371,7 @@
       // Initialize AES with Key
       var aes = new AES(key, 128);
       // get key status (Done or Error)
-      if (aes.args.info.hexInputValidation == 'Done') {
+      if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
@@ -382,7 +382,7 @@
         // Decrypt cyphertext
         let plaintext = aes.decrypt(cyphertext);
         // get plaintext status (Done or Error)
-        if (aes.args.info.hexInputValidation == 'Done') {
+        if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Cyphertext: " + cyphertext);
         } else {
           console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
