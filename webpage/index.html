@@ -360,7 +360,7 @@
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
-        document.getElementById('keyStatus').innerHTML = key;
+        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
