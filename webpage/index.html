@@ -918,6 +918,7 @@
       this.args.record.keyExpansion['rcon'] = this.args.rcon; // record
 
       // expand key
+      console.log('keyExpansion')
       let wCount = (this.args.round + 1) * 4;
       let w = [];
       for (let i = 0; i < 4; i++) {
@@ -925,6 +926,7 @@
         w.push([this.args.key[i * 4], this.args.key[i * 4 + 1], this.args.key[i * 4 + 2], this.args.key[i * 4 + 3]])
       }
       this.args.record.keyExpansion['key0'] = this._byteArrayToHexString(w.slice(0, 5)); // record
+      console.log('first 4 words are the key / 1st key')
       var temp = [];
       for (let i = 4; i < wCount; i++) {
         // rest of the words / rest of the keys
