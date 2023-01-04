@@ -184,7 +184,7 @@
 <body>
   <div id="message">
     <!-- title -->
-    <h1>Advance Encryption Standard</h1>
+    <h1>Advance Encryption Standard Demonstration</h1>
     <h2>AES-128bit, ECB mode</h2>
 
     <!-- key input -->
@@ -315,8 +315,21 @@
       // Initialize AES with Key
       var aes = new AES(key, 128);
       // get key status (Done or Error)
-      if (aes.args.info.hexInputValidation == 'Done') {
+      if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
+        console.log("AES Expanded Key: " + aes._byteArrayToHexArray(aes.args.key));
+        document.getElementById('keyStatus').innerHTML = '' +
+          aes.args.record.keyExpansion.key0 + '\n' +
+          aes.args.record.keyExpansion.key1 + '\n' +
+          aes.args.record.keyExpansion.key2 + '\n' +
+          aes.args.record.keyExpansion.key3 + '\n' +
+          aes.args.record.keyExpansion.key4 + '\n' +
+          aes.args.record.keyExpansion.key5 + '\n' +
+          aes.args.record.keyExpansion.key6 + '\n' +
+          aes.args.record.keyExpansion.key7 + '\n' +
+          aes.args.record.keyExpansion.key8 + '\n' +
+          aes.args.record.keyExpansion.key9 + '\n' +
+          aes.args.record.keyExpansion.key10;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
@@ -332,7 +345,7 @@
       // Initialize AES with Key
       var aes = new AES(key, 128);
       // get key status (Done or Error)
-      if (aes.args.info.hexInputValidation == 'Done') {
+      if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
@@ -343,7 +356,7 @@
         // Encrypt plaintext
         let cyphertext = aes.encrypt(plaintext);
         // get plaintext status (Done or Error)
-        if (aes.args.info.hexInputValidation == 'Done') {
+        if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Plaintext: " + plaintext);
         } else {
           console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
@@ -368,7 +381,7 @@
       // Initialize AES with Key
       var aes = new AES(key, 128);
       // get key status (Done or Error)
-      if (aes.args.info.hexInputValidation == 'Done') {
+      if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
@@ -379,7 +392,7 @@
         // Decrypt cyphertext
         let plaintext = aes.decrypt(cyphertext);
         // get plaintext status (Done or Error)
-        if (aes.args.info.hexInputValidation == 'Done') {
+        if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Cyphertext: " + cyphertext);
         } else {
           console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
@@ -448,8 +461,8 @@
         console.log('arg outputType: ' + this.args.outputType);
       }
       try {
-        this.keyExpansion();
         this.init();
+        this.keyExpansion();
       } catch (e) {
         console.log(e);
         this.args.info.hexInputValidation = 'Invalid Hex Input';
@@ -795,29 +808,40 @@
       input('string'): hex string
       size('number'): hex string length (default: 16)
       */
+      var status = true;
 
       // check key is string
       if (typeof input !== 'string') {
+        status = false;
+        console.log('key must be a string');
         this.args.info.hexInputValidation = 'key must be a string';
         // throw new Error('key must be a string');
+        return
       }
 
       // check string length
       if (input.length !== size * 2) {
+        status = false;
+        console.log('key length must be ' + size * 2);
         this.args.info.hexInputValidation = 'key length must be ' + size * 2;
         // throw new Error('key length must be ' + size * 2);
+        return
       }
 
       // check key is hex string
-      var regex = /[0-9a-fA-F]{16}/g;
-      if (input.match(regex) !== true) {
-      } else {
+      var origin = input.match(/[0-9a-fA-F]{2}/g).join('');
+      if (input !== origin) {
+        status = false;
+        console.log('key must be a hex string');
         this.args.info.hexInputValidation = 'key must be a hex string';
         // throw new Error('key must be a hex string');
+        return
       }
 
       // pass
-      this.args.info.hexInputValidation = 'pass';
+      if (status) {
+        this.args.info.hexInputValidation = 'pass';
+      }
     };
 
     AES.prototype.init = function () {
@@ -898,7 +922,7 @@
       this.args.record.keyExpansion['key-1'] = this._byteArrayToHexArray(this.args.key); // record
 
       // rcon
-      this.args.rcon = new Uint8Array([0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36]);
+      this.args.rcon = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36];
       this.args.record.keyExpansion['rcon'] = this.args.rcon; // record
 
       // expand key
@@ -909,6 +933,8 @@
         w.push([this.args.key[i * 4], this.args.key[i * 4 + 1], this.args.key[i * 4 + 2], this.args.key[i * 4 + 3]])
       }
       this.args.record.keyExpansion['key0'] = this._byteArrayToHexString(w.slice(0, 5)); // record
+      console.log('first 4 words are the key / 1st key')
+      console.log('wCount: ', wCount)
       var temp = [];
       for (let i = 4; i < wCount; i++) {
         // rest of the words / rest of the keys
@@ -930,7 +956,7 @@
       // // inspect key in hex
       // // console.log('key', this._byteArrayToHexArray(this.args.key));
       // for (let i = 0; i < w.length; i++) {
-      //     console.log('w' + i, this._byteArrayToHexArray(w[i]));
+      //   console.log('w' + i, this._byteArrayToHexArray(w[i]));
       // }
 
       if (this.print._keyExpansion) {

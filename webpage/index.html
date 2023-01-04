@@ -317,7 +317,7 @@
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
-        console.log("AES Expanded Key: " + aes._byteArrayToHexArray(aes.args.key));
+        console.log("AES Expanded Key: " + aes._byteArrayToHexString(aes.args.key));
         document.getElementById('keyStatus').innerHTML = '' +
           aes.args.record.keyExpansion.key0 + '\n' +
           aes.args.record.keyExpansion.key1 + '\n' +
