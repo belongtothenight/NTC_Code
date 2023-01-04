@@ -351,6 +351,7 @@
 
     // AES Encryption
     function plaintextButton() {
+      console.log('AES Encryption Button Pressed')
       var key = document.getElementById('key').value;
       var plaintext = document.getElementById('plaintext').value;
       console.log("AES Plaintext: " + plaintext);
@@ -386,6 +387,7 @@
 
     // AES Decryption
     function cyphertextButton() {
+      console.log('AES Decryption Button Pressed')
       var key = document.getElementById('key').value;
       var cyphertext = document.getElementById('cyphertext').value;
       console.log("AES Cyphertext: " + cyphertext);
