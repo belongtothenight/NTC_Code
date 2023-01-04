@@ -59,6 +59,7 @@
       line-height: 140%;
       margin: 16px 0 24px;
       font-size: 18px;
+      font-variant-numeric: tabular-nums;
     }
 
     #message a {
@@ -103,6 +104,7 @@
       color: rgba(0, 0, 0, 0.3);
       font-size: 18px;
       font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-variant-numeric: tabular-nums;
     }
 
     #message button {
@@ -186,6 +188,12 @@
     <!-- title -->
     <h1>Advance Encryption Standard Demonstration</h1>
     <h2>AES-128bit, ECB mode</h2>
+    <p>Cross validation site: <a
+        href="https://www.cryptool.org/en/cto/aes-step-by-step">https://www.cryptool.org/en/cto/aes-step-by-step</a>.<br>
+      Created by belongtothenight on <a href="https://github.com/belongtothenight/NTC_Code">GitHub</a>.<br>
+      Website hosted by <a href="https://firebase.google.com/">Firebase</a>.<br>
+      Click on the buttons below to expand the content. Recommand using dark theme.
+    </p>
 
     <!-- AES Key Expansion-->
     <button type="button" class="collapsible">AES Key Expansion</button>
@@ -194,18 +202,16 @@
       <!-- key input -->
       <label for="key">Key: (16 bytes Hex numbers with no space)</label>
       <span>
-        <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
+        <input type="text" id="key" name="key" placeholder="Enter Key" value="00000000000000000000000000000000">
       </span>
       <!-- keySent button -->
-      <label for="keySent" id="keyStatus">Key status: </label>
+      <label for="keySent" id="keyStatus">Key status: Nan</label>
       <span>
         <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Expanded Key</button><br>
       </span>
       <!-- keyResult -->
-      <label for="keyResult">Expanded Key: </label>
-      <span>
-        <text id="keyResult"></text>
-      </span>
+      <p id="keyResult">Expanded Key: Nan</p>
+      <br>
     </div>
 
     <!-- AES Encryption Dropdown -->
@@ -215,20 +221,18 @@
       <!-- plaintext input -->
       <label for="plaintext">Plaintext: (16 bytes Hex numbers with no space)</label>
       <span>
-        <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
+        <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext"
+          value="00000101030307070f0f1f1f3f3f7f7f">
       </span>
       <!-- plaintextSent button -->
-      <label for="plaintextSent" id="plaintextStatus">Plaintext status: </label>
+      <label for="plaintextSent" id="plaintextStatus">Plaintext status: Nan</label>
       <span>
         <button type="button" id="plaintextSent" name="plaintextSent" onclick="plaintextButton()">Encrypt</button><br>
       </span>
       <!-- Encryption Process -->
-      <p id="encryptionProcess">Round0-10</p>
+      <p id="encryptionProcess">Encryption process: Nan</p>
       <!-- plaintextResult -->
-      <label for="plaintextResult">Generated cyphertext: </label>
-      <span>
-        <p id="plaintextResult">Nan</p>
-      </span>
+      <label id="plaintextResult">Generated Ciphertext: Nan</label>
       <br>
     </div>
 
@@ -236,28 +240,24 @@
     <button type="button" class="collapsible">AES Decryption</button>
     <div class="content">
       <br>
-      <!-- cyphertext input -->
-      <label for="cyphertext">Cyphertext: (16 bytes Hex numbers with no space)</label>
+      <!-- Ciphertext input -->
+      <label for="Ciphertext">Ciphertext: (16 bytes Hex numbers with no space)</label>
       <span>
-        <input type="text" id="cyphertext" name="cyphertext" placeholder="Enter cyphertext" value="input cyphertext">
+        <input type="text" id="Ciphertext" name="Ciphertext" placeholder="Enter Ciphertext"
+          value="c7d12419489e3b6233a2c5a7f4563172">
       </span>
-      <!-- cyphertextSent button -->
-      <label for="cyphertextSent" id="cyphertextStatus">Cyphertext status: </label>
+      <!-- ciphertextSent button -->
+      <label for="ciphertextSent" id="ciphertextStatus">Ciphertext status: Nan</label>
       <span>
-        <button type="button" id="cyphertextSent" name="cyphertextSent"
-          onclick="cyphertextButton()">Decrypt</button><br>
+        <button type="button" id="ciphertextSent" name="ciphertextSent"
+          onclick="ciphertextButton()">Decrypt</button><br>
       </span>
       <!-- Decryption Process -->
-      <p id="decryptionProcess">Round0-10</p>
-      <!-- cyphertextResult -->
-      <label for="cyphertextResult">Generated plaintext: </label>
-      <span>
-        <p id="cyphertextResult">Nan</p>
-      </span>
+      <p id="decryptionProcess">Decryption process: Nan</p>
+      <!-- ciphertextResult -->
+      <label id="ciphertextResult">Generated plaintext: Nan</label>
       <br>
     </div>
-    <p>Recommand using dark theme.</p>
-    <p>Created by belongtothenight on <a href="https://github.com/belongtothenight/NTC_Code">GitHub</a>.</p>
   </div>
   <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
   <script>
@@ -314,14 +314,12 @@
       });
     }
 
-    // Website initialization
-    console.log("Website Initialized");
-
-    // AES Key
-    function keyButton() {
-      var key = document.getElementById('key').value;
-      console.log("AES Key: " + key);
-
+    // AES Initialization
+    function AESInitialization(key) {
+      /*
+      Initialize AES functions.
+      Update key status.
+      */
       // Initialize AES with Key
       var aes = new AES(key, 128);
       // get key status (Done or Error)
@@ -338,25 +336,40 @@
           aes.args.record.keyExpansion.key8 + '\n' +
           aes.args.record.keyExpansion.key9 + '\n' +
           aes.args.record.keyExpansion.key10;
-        var expandedAESKeyHTML = '' +
-          aes.args.record.keyExpansion.key0 + '<br/>' +
-          aes.args.record.keyExpansion.key1 + '<br/>' +
-          aes.args.record.keyExpansion.key2 + '<br/>' +
-          aes.args.record.keyExpansion.key3 + '<br/>' +
-          aes.args.record.keyExpansion.key4 + '<br/>' +
-          aes.args.record.keyExpansion.key5 + '<br/>' +
-          aes.args.record.keyExpansion.key6 + '<br/>' +
-          aes.args.record.keyExpansion.key7 + '<br/>' +
-          aes.args.record.keyExpansion.key8 + '<br/>' +
-          aes.args.record.keyExpansion.key9 + '<br/>' +
-          aes.args.record.keyExpansion.key10;
+        var expandedAESKeyHTML = '<br/>' +
+          'key0:  ' + aes.args.record.keyExpansion.key0 + '<br/>' +
+          'key1:  ' + aes.args.record.keyExpansion.key1 + '<br/>' +
+          'key2:  ' + aes.args.record.keyExpansion.key2 + '<br/>' +
+          'key3:  ' + aes.args.record.keyExpansion.key3 + '<br/>' +
+          'key4:  ' + aes.args.record.keyExpansion.key4 + '<br/>' +
+          'key5:  ' + aes.args.record.keyExpansion.key5 + '<br/>' +
+          'key6:  ' + aes.args.record.keyExpansion.key6 + '<br/>' +
+          'key7:  ' + aes.args.record.keyExpansion.key7 + '<br/>' +
+          'key8:  ' + aes.args.record.keyExpansion.key8 + '<br/>' +
+          'key9:  ' + aes.args.record.keyExpansion.key9 + '<br/>' +
+          'key10: ' + aes.args.record.keyExpansion.key10;
+        // update key status
         console.log("AES Key: " + key);
-        console.log("AES Expanded Key: \n" + expandedAESKeyJS);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
+        // update expanded key
+        console.log("AES Expanded Key: \n" + expandedAESKeyJS);
+        const html = 'Expanded Key: <br/>'
+        document.getElementById('keyResult').innerHTML = html + expandedAESKeyHTML;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       }
+      return aes;
+    }
+
+    // Website initialization
+    console.log("Website Initialized");
+
+    // AES Key
+    function keyButton() {
+      var key = document.getElementById('key').value;
+      console.log("AES Key: " + key);
+      AESInitialization(key);
     }
 
     // AES Encryption
@@ -367,57 +380,71 @@
       console.log("AES Plaintext: " + plaintext);
 
       // Initialize AES with Key
-      var aes = new AES(key, 128);
-      // get key status (Done or Error)
-      if (aes.args.info.hexInputValidation == 'pass') {
-        console.log("AES Key: " + key);
-        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
-      } else {
-        console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
-      }
+      var aes = AESInitialization(key);
 
       // Encrypt plaintext
-      let cyphertext = aes.encrypt(plaintext);
+      let Ciphertext = aes.encrypt(plaintext);
       // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
-        console.log("AES Cyphertext: " + cyphertext);
-        document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
-        document.getElementById('plaintextResult').innerHTML = cyphertext;
+        const html1 = 'Plaintext status: ';
+        const html2 = 'Generated Ciphertext: ';
+        const html3 = 'Encryption process: ';
+        // update plaintext status
+        document.getElementById('plaintextStatus').innerHTML = html1 + aes.args.info.hexInputValidation;
+        // update encryption process
+        var aesObjectEncrypt = '';
+        var aesObjectKeys = Object.keys(aes.args.record.encrypt);
+        for (let i = 0; i < aesObjectKeys.length; i++) {
+          if (aesObjectKeys[i].includes('round')) {
+            // console.log(aesObjectKeys[i] + ': ' + aes.args.record.encrypt[aesObjectKeys[i]]);
+            aesObjectEncrypt += '<br/>' + aesObjectKeys[i] + ': ' + aes.args.record.encrypt[aesObjectKeys[i]];
+          }
+        }
+        document.getElementById('encryptionProcess').innerHTML = html3 + aesObjectEncrypt;
+        // update Ciphertext
+        console.log("AES Ciphertext: " + Ciphertext);
+        document.getElementById('plaintextResult').innerHTML = html2 + Ciphertext;
       } else {
         console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
-        document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
+        document.getElementById('plaintextStatus').innerHTML = html1 + aes.args.info.hexInputValidation;
       }
     }
 
     // AES Decryption
-    function cyphertextButton() {
+    function ciphertextButton() {
       console.log('AES Decryption Button Pressed')
       var key = document.getElementById('key').value;
-      var cyphertext = document.getElementById('cyphertext').value;
-      console.log("AES Cyphertext: " + cyphertext);
+      var Ciphertext = document.getElementById('Ciphertext').value;
+      console.log("AES Ciphertext: " + Ciphertext);
 
       // Initialize AES with Key
-      var aes = new AES(key, 128);
-      // get key status (Done or Error)
-      if (aes.args.info.hexInputValidation == 'pass') {
-        console.log("AES Key: " + key);
-        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
-      } else {
-        console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
-      }
+      var aes = AESInitialization(key);
 
-      // Decrypt cyphertext
-      let plaintext = aes.decrypt(cyphertext);
+      // Decrypt Ciphertext
+      let plaintext = aes.decrypt(Ciphertext);
       // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
+        const html1 = 'Ciphertext status: ';
+        const html2 = 'Generated plaintext: ';
+        const html3 = 'Decryption process: ';
+        // update plaintext status
         console.log("AES Plaintext: " + plaintext);
-        document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
-        document.getElementById('cyphertextResult').innerHTML = plaintext;
+        document.getElementById('ciphertextStatus').innerHTML = html1 + aes.args.info.hexInputValidation;
+        // update decryption process
+        var aesObjectDecrypt = '';
+        var aesObjectKeys = Object.keys(aes.args.record.decrypt);
+        for (let i = 0; i < aesObjectKeys.length; i++) {
+          if (aesObjectKeys[i].includes('round')) {
+            // console.log(aesObjectKeys[i] + ': ' + aes.args.record.decrypt[aesObjectKeys[i]]);
+            aesObjectDecrypt += '<br/>' + aesObjectKeys[i] + ': ' + aes.args.record.decrypt[aesObjectKeys[i]];
+          }
+        }
+        document.getElementById('decryptionProcess').innerHTML = html3 + aesObjectDecrypt;
+        // update Ciphertext
+        document.getElementById('ciphertextResult').innerHTML = html2 + plaintext;
       } else {
-        console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
-        document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
+        console.log("AES Ciphertext: " + aes.args.info.hexInputValidation);
+        document.getElementById('ciphertextStatus').innerHTML = html1 + aes.args.info.hexInputValidation;
       }
     }
 
@@ -1024,34 +1051,34 @@
       this.args.record.encrypt['round' + this.args.round + '-3addRoundKey'] = this._byteArrayToHexString(w); // record
       this.args.record.encrypt['round' + this.args.round + '-4output'] = this._byteArrayToHexString(w); // record
 
-      // postprocess cyphertext
-      let cyphertext = this._byteArrayToHexString(w);
-      this.args.record.encrypt['cyphertext'] = cyphertext; // record
+      // postprocess Ciphertext
+      let Ciphertext = this._byteArrayToHexString(w);
+      this.args.record.encrypt['Ciphertext'] = Ciphertext; // record
 
       if (this.print.encrypt) {
         console.log('encrypt');
         console.log('plaintext ', plaintext);
-        console.log('cyphertext', cyphertext);
+        console.log('Ciphertext', Ciphertext);
       }
-      return cyphertext;
+      return Ciphertext;
     };
 
-    AES.prototype.decrypt = function (cyphertext) {
+    AES.prototype.decrypt = function (Ciphertext) {
       /*
-      cyphertext: hex string (16 bytes)
+      Ciphertext: hex string (16 bytes)
       */
-      // preprocess cyphertext
+      // preprocess Ciphertext
       let temp;
       let size = this.args.blockSize / 8;
-      this._hexInputValidation(cyphertext, size);
-      this.args.record.decrypt['cyphertext-3'] = cyphertext; // record
-      temp = this._hexStringToByteArray(cyphertext, false);
-      this.args.record.decrypt['cyphertext-2'] = this._byteArrayToHexArray(temp); // record
+      this._hexInputValidation(Ciphertext, size);
+      this.args.record.decrypt['Ciphertext-3'] = Ciphertext; // record
+      temp = this._hexStringToByteArray(Ciphertext, false);
+      this.args.record.decrypt['Ciphertext-2'] = this._byteArrayToHexArray(temp); // record
       let w = [];
       for (let i = 0; i < size / 4; i++) {
         w.push([temp[i * 4], temp[i * 4 + 1], temp[i * 4 + 2], temp[i * 4 + 3]]);
       }
-      this.args.record.decrypt['cyphertext-1'] = this._byteArrayToHexString(w); // record
+      this.args.record.decrypt['Ciphertext-1'] = this._byteArrayToHexString(w); // record
 
       // initial round
       this.args.record.decrypt['round0-0input'] = this._byteArrayToHexString(w); // record
@@ -1089,7 +1116,7 @@
 
       if (this.print.decrypt) {
         console.log('decrypt');
-        console.log('cyphertext ', cyphertext);
+        console.log('Ciphertext ', Ciphertext);
         console.log('plaintext  ', plaintext);
       }
       return plaintext;
