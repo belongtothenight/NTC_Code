@@ -797,6 +797,10 @@
       input('string'): hex string
       size('number'): hex string length (default: 16)
       */
+      console.log('input', input);
+      console.log('input type', typeof input);
+      console.log('input length', input.length);
+      console.log('input match', input.match(/[0-9a-fA-F]{16}/g));
 
       // check key is string
       if (typeof input !== 'string') {
