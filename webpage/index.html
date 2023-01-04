@@ -217,7 +217,7 @@
       <!-- plaintextResult -->
       <label for="plaintextResult">Generated cyphertext: </label>
       <span>
-        <p id="plaintextResult"></p>
+        <p id="plaintextResult">Nan</p>
       </span>
       <br>
     </div>
@@ -407,18 +407,17 @@
         // get plaintext status (Done or Error)
         if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Cyphertext: " + cyphertext);
+          console.log("AES Plaintext: " + plaintext);
+          document.getElementById('cyphertextStatus').innerHTML = 'pass';
+          document.getElementById('cyphertextResult').innerHTML = plaintext;
         } else {
           console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
           document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
         }
-        console.log("AES Plaintext: " + cyphertext);
       } catch (e) {
         console.error(e);
         document.getElementById('cyphertextStatus').innerHTML = 'Error decrypting the cyphertext, check the console.';
       }
-
-      document.getElementById('cyphertextResult').value = plaintext;
-
     }
 
     // AES Functions
