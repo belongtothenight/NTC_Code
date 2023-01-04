@@ -187,16 +187,26 @@
     <h1>Advance Encryption Standard Demonstration</h1>
     <h2>AES-128bit, ECB mode</h2>
 
-    <!-- key input -->
-    <label for="key">Key: (16 bytes Hex numbers with no space)</label>
-    <span>
-      <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
-    </span>
-    <!-- keySent button -->
-    <label for="keySent" id="keyStatus"></label>
-    <span>
-      <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Expanded Key</button><br>
-    </span>
+    <!-- AES Key Expansion-->
+    <button type="button" class="collapsible">AES Key Expansion</button>
+    <div class="content">
+      <br>
+      <!-- key input -->
+      <label for="key">Key: (16 bytes Hex numbers with no space)</label>
+      <span>
+        <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
+      </span>
+      <!-- keySent button -->
+      <label for="keySent" id="keyStatus">Key status: </label>
+      <span>
+        <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Expanded Key</button><br>
+      </span>
+      <!-- keyResult -->
+      <label for="keyResult">Expanded Key: </label>
+      <span>
+        <text id="keyResult"></text>
+      </span>
+    </div>
 
     <!-- AES Encryption Dropdown -->
     <button type="button" class="collapsible">AES Encryption</button>
@@ -208,7 +218,7 @@
         <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
       </span>
       <!-- plaintextSent button -->
-      <label for="plaintextSent" id="plaintextStatus"></label>
+      <label for="plaintextSent" id="plaintextStatus">Plaintext status: </label>
       <span>
         <button type="button" id="plaintextSent" name="plaintextSent" onclick="plaintextButton()">Encrypt</button><br>
       </span>
@@ -232,7 +242,7 @@
         <input type="text" id="cyphertext" name="cyphertext" placeholder="Enter cyphertext" value="input cyphertext">
       </span>
       <!-- cyphertextSent button -->
-      <label for="cyphertextSent" id="cyphertextStatus"></label>
+      <label for="cyphertextSent" id="cyphertextStatus">Cyphertext status: </label>
       <span>
         <button type="button" id="cyphertextSent" name="cyphertextSent"
           onclick="cyphertextButton()">Decrypt</button><br>
@@ -342,10 +352,10 @@
           aes.args.record.keyExpansion.key10;
         console.log("AES Key: " + key);
         console.log("AES Expanded Key: \n" + expandedAESKeyJS);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       }
     }
 
@@ -361,10 +371,10 @@
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       }
 
       // Encrypt plaintext
@@ -372,11 +382,11 @@
       // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Cyphertext: " + cyphertext);
-        document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
         document.getElementById('plaintextResult').innerHTML = cyphertext;
       } else {
         console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
-        document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
       }
     }
 
@@ -392,9 +402,10 @@
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       }
 
       // Decrypt cyphertext
@@ -402,11 +413,11 @@
       // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Plaintext: " + plaintext);
-        document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
         document.getElementById('cyphertextResult').innerHTML = plaintext;
       } else {
         console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
-        document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
       }
     }
 
