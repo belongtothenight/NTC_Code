@@ -797,6 +797,7 @@
       input('string'): hex string
       size('number'): hex string length (default: 16)
       */
+      ////////////////////////////////////////////////////////////////////////////
       console.log('input', input);
       console.log('input type', typeof input);
       if (typeof input === 'string') {
@@ -804,18 +805,23 @@
       } else {
         console.log('input is not string');
       }
+      ///////////////////
       console.log('input length', input.length);
       if (input.length === size * 2) {
         console.log('input length is correct');
       } else {
         console.log('input length is not correct');
       }
-      console.log('input match', input.match(/[0-9a-fA-F]{2}/g));
-      if (input.match(/[0-9a-fA-F]{2}/g) !== null) {
+      ///////////////////
+      var v = input.match(/[0-9a-fA-F]{2}/g);
+      console.log('input match', v);
+      console.log('input match length', v.length);
+      if (v !== null) {
         console.log('input is hex string');
       } else {
         console.log('input is not hex string');
       }
+      ////////////////////////////////////////////////////////////////////////////
 
       // check key is string
       if (typeof input !== 'string') {
