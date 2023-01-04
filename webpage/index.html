@@ -360,6 +360,7 @@
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
+        document.getElementById('keyStatus').innerHTML = key;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
@@ -371,6 +372,7 @@
         // get plaintext status (Done or Error)
         if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Plaintext: " + plaintext);
+          document.getElementById('plaintextStatus').innerHTML = plaintext;
         } else {
           console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
           document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
@@ -946,8 +948,6 @@
         w.push([this.args.key[i * 4], this.args.key[i * 4 + 1], this.args.key[i * 4 + 2], this.args.key[i * 4 + 3]])
       }
       this.args.record.keyExpansion['key0'] = this._byteArrayToHexString(w.slice(0, 5)); // record
-      console.log('first 4 words are the key / 1st key')
-      console.log('wCount: ', wCount)
       var temp = [];
       for (let i = 4; i < wCount; i++) {
         // rest of the words / rest of the keys
