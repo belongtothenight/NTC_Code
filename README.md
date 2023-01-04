@@ -34,3 +34,8 @@
 ### DES
 
 1. <https://www.geeksforgeeks.org/data-encryption-standard-des-set-1/>
+
+## Difference between testing and deploying
+
+1. input.match(/[0-9a-fA-F]{16}/g); ==> input.match(/[0-9a-fA-F]{2}/g);
+2. 
