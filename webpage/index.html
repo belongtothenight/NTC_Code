@@ -229,7 +229,7 @@
         <button type="button" id="plaintextSent" name="plaintextSent" onclick="plaintextButton()">Encrypt</button><br>
       </span>
       <!-- Encryption Process -->
-      <p id="encryptionProcess">Round0-10</p>
+      <p id="encryptionProcess">Encryption process: </p>
       <!-- plaintextResult -->
       <label id="plaintextResult">Generated cyphertext: Nan</label>
       <br>
@@ -252,7 +252,7 @@
           onclick="cyphertextButton()">Decrypt</button><br>
       </span>
       <!-- Decryption Process -->
-      <p id="decryptionProcess">Round0-10</p>
+      <p id="decryptionProcess">Decryption process: </p>
       <!-- cyphertextResult -->
       <label id="cyphertextResult">Generated plaintext: Nan</label>
       <br>
@@ -423,12 +423,27 @@
       let plaintext = aes.decrypt(cyphertext);
       // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
+        const html1 = 'Cyphertext status: ';
+        const html2 = 'Generated plaintext: ';
+        const html3 = 'Decryption process: ';
+        // update plaintext status
         console.log("AES Plaintext: " + plaintext);
-        document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
-        document.getElementById('cyphertextResult').innerHTML = 'Generated plaintext: ' + plaintext;
+        document.getElementById('cyphertextStatus').innerHTML = html1 + aes.args.info.hexInputValidation;
+        // update decryption process
+        var aesObjectDecrypt = '';
+        var aesObjectKeys = Object.keys(aes.args.record.decrypt);
+        for (let i = 0; i < aesObjectKeys.length; i++) {
+          if (aesObjectKeys[i].includes('round')) {
+            // console.log(aesObjectKeys[i] + ': ' + aes.args.record.decrypt[aesObjectKeys[i]]);
+            aesObjectDecrypt += '<br/>' + aesObjectKeys[i] + ': ' + aes.args.record.decrypt[aesObjectKeys[i]];
+          }
+        }
+        document.getElementById('decryptionProcess').innerHTML = html3 + aesObjectDecrypt;
+        // update cyphertext
+        document.getElementById('cyphertextResult').innerHTML = html2 + plaintext;
       } else {
         console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
-        document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
+        document.getElementById('cyphertextStatus').innerHTML = html1 + aes.args.info.hexInputValidation;
       }
     }
 
