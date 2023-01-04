@@ -348,7 +348,7 @@
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
         // update expanded key
         console.log("AES Expanded Key: \n" + expandedAESKeyJS);
-        var html = document.getElementById('keyResult').innerHTML;
+        let html = document.getElementById('keyResult').innerHTML;
         document.getElementById('keyResult').innerHTML = html + expandedAESKeyHTML;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
