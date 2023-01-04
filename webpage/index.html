@@ -453,8 +453,8 @@
         console.log('arg outputType: ' + this.args.outputType);
       }
       try {
-        this.keyExpansion();
         this.init();
+        this.keyExpansion();
       } catch (e) {
         console.log(e);
         this.args.info.hexInputValidation = 'Invalid Hex Input';
