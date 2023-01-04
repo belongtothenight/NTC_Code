@@ -197,7 +197,7 @@
         <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
       </span>
       <!-- keySent button -->
-      <label for="keySent" id="keyStatus"></label>
+      <label for="keySent" id="keyStatus">Key status: </label>
       <span>
         <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Expanded Key</button><br>
       </span>
@@ -352,10 +352,10 @@
           aes.args.record.keyExpansion.key10;
         console.log("AES Key: " + key);
         console.log("AES Expanded Key: \n" + expandedAESKeyJS);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       }
     }
 
@@ -371,10 +371,10 @@
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       }
 
       // Encrypt plaintext
@@ -402,9 +402,10 @@
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
+        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       }
 
       // Decrypt cyphertext
