@@ -797,32 +797,6 @@
       input('string'): hex string
       size('number'): hex string length (default: 16)
       */
-      // ////////////////////////////////////////////////////////////////////////////
-      // console.log('input', input);
-      // console.log('input type', typeof input);
-      // if (typeof input === 'string') {
-      //   console.log('input is string');
-      // } else {
-      //   console.log('input is not string');
-      // }
-      // ///////////////////
-      // console.log('input length', input.length);
-      // if (input.length === size * 2) {
-      //   console.log('input length is correct');
-      // } else {
-      //   console.log('input length is not correct');
-      // }
-      // ///////////////////
-      // var v = input.match(/[0-9a-fA-F]{2}/g);
-      // var cv = v.join('');
-      // console.log('input match', v);
-      // console.log('input match join', cv);
-      // if (v === cv) {
-      //   console.log('input is hex string');
-      // } else {
-      //   console.log('input is not hex string');
-      // }
-      // ////////////////////////////////////////////////////////////////////////////
       var status = true;
 
       // check key is string
@@ -831,6 +805,7 @@
         console.log('key must be a string');
         this.args.info.hexInputValidation = 'key must be a string';
         // throw new Error('key must be a string');
+        return
       }
 
       // check string length
@@ -839,6 +814,7 @@
         console.log('key length must be ' + size * 2);
         this.args.info.hexInputValidation = 'key length must be ' + size * 2;
         // throw new Error('key length must be ' + size * 2);
+        return
       }
 
       // check key is hex string
@@ -848,6 +824,7 @@
         console.log('key must be a hex string');
         this.args.info.hexInputValidation = 'key must be a hex string';
         // throw new Error('key must be a hex string');
+        return
       }
 
       // pass
