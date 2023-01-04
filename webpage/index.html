@@ -911,7 +911,7 @@
       this.args.record.keyExpansion['key-1'] = this._byteArrayToHexArray(this.args.key); // record
 
       // rcon
-      this.args.rcon = new Uint8Array([0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36]);
+      this.args.rcon = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36];
       this.args.record.keyExpansion['rcon'] = this.args.rcon; // record
 
       // expand key
@@ -940,11 +940,11 @@
       }
       this.args.key = w;
 
-      // // inspect key in hex
-      // // console.log('key', this._byteArrayToHexArray(this.args.key));
-      // for (let i = 0; i < w.length; i++) {
-      //     console.log('w' + i, this._byteArrayToHexArray(w[i]));
-      // }
+      // inspect key in hex
+      // console.log('key', this._byteArrayToHexArray(this.args.key));
+      for (let i = 0; i < w.length; i++) {
+        console.log('w' + i, this._byteArrayToHexArray(w[i]));
+      }
 
       if (this.print._keyExpansion) {
         console.log('key expansion');
