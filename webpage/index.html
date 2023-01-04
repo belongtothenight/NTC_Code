@@ -208,8 +208,9 @@
       <!-- keyResult -->
       <label for="keyResult">Expanded Key: </label>
       <span>
-        <text id="keyResult"></text>
+        <label id="keyResult"></label>
       </span>
+      <br>
     </div>
 
     <!-- AES Encryption Dropdown -->
@@ -229,10 +230,7 @@
       <!-- Encryption Process -->
       <p id="encryptionProcess">Round0-10</p>
       <!-- plaintextResult -->
-      <label for="plaintextResult">Generated cyphertext: </label>
-      <span>
-        <p id="plaintextResult">Nan</p>
-      </span>
+      <label id="plaintextResult">Generated cyphertext: </label>
       <br>
     </div>
 
@@ -254,7 +252,7 @@
       <!-- Decryption Process -->
       <p id="decryptionProcess">Round0-10</p>
       <!-- cyphertextResult -->
-      <label for="cyphertextResult">Generated plaintext: </label>
+      <label id="cyphertextResult">Generated plaintext: </label>
       <span>
         <p id="cyphertextResult">Nan</p>
       </span>
@@ -387,7 +385,7 @@
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Cyphertext: " + cyphertext);
         document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
-        document.getElementById('plaintextResult').innerHTML = cyphertext;
+        document.getElementById('plaintextResult').innerHTML = 'Generated cyphertext: ' + cyphertext;
       } else {
         console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
         document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
@@ -418,7 +416,7 @@
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Plaintext: " + plaintext);
         document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
-        document.getElementById('cyphertextResult').innerHTML = plaintext;
+        document.getElementById('cyphertextResult').innerHTML = 'Generated plaintext: ' + plaintext;
       } else {
         console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
         document.getElementById('cyphertextStatus').innerHTML = 'Cyphertext status: ' + aes.args.info.hexInputValidation;
