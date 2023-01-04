@@ -1081,10 +1081,10 @@
       this.args.record.decrypt['Ciphertext-1'] = this._byteArrayToHexString(w); // record
 
       // initial round
-      this.args.record.decrypt['round0-0input'] = this._byteArrayToHexString(w); // record
+      this.args.record.decrypt['round10-0input'] = this._byteArrayToHexString(w); // record
       w = this._addRoundKey(w, this.args.round);
-      this.args.record.decrypt['round0-1addRoundKey'] = this._byteArrayToHexString(w); // record
-      this.args.record.decrypt['round0-2output'] = this._byteArrayToHexString(w); // record
+      this.args.record.decrypt['round10-1addRoundKey'] = this._byteArrayToHexString(w); // record
+      this.args.record.decrypt['round10-2output'] = this._byteArrayToHexString(w); // record
 
       // rounds N to 
       for (let i = this.args.round - 1; i > 0; i--) {
