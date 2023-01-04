@@ -371,7 +371,7 @@
         let cyphertext = aes.encrypt(plaintext);
         // get plaintext status (Done or Error)
         if (aes.args.info.hexInputValidation == 'pass') {
-          console.log("AES Plaintext: " + plaintext);
+          console.log("AES Cyphertext: " + cyphertext);
           document.getElementById('plaintextStatus').innerHTML = 'pass';
           document.getElementById('plaintextResult').innerHTML = cyphertext;
         } else {
@@ -406,7 +406,6 @@
         let plaintext = aes.decrypt(cyphertext);
         // get plaintext status (Done or Error)
         if (aes.args.info.hexInputValidation == 'pass') {
-          console.log("AES Cyphertext: " + cyphertext);
           console.log("AES Plaintext: " + plaintext);
           document.getElementById('cyphertextStatus').innerHTML = 'pass';
           document.getElementById('cyphertextResult').innerHTML = plaintext;
