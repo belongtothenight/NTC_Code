@@ -387,15 +387,19 @@
       if (aes.args.info.hexInputValidation == 'pass') {
         const html1 = 'Plaintext status: ';
         const html2 = 'Generated cyphertext: ';
+        const html3 = 'Encryption process: ';
         // update plaintext status
         document.getElementById('plaintextStatus').innerHTML = html1 + aes.args.info.hexInputValidation;
         // update encryption process
+        var aesObjectEncrypt = '';
         var aesObjectKeys = Object.keys(aes.args.record.encrypt);
         for (let i = 0; i < aesObjectKeys.length; i++) {
           if (aesObjectKeys[i].includes('round')) {
-            console.log(aesObjectKeys[i] + ': ' + aes.args.record.encrypt[aesObjectKeys[i]]);
+            // console.log(aesObjectKeys[i] + ': ' + aes.args.record.encrypt[aesObjectKeys[i]]);
+            aesObjectEncrypt += '<br/>' + aesObjectKeys[i] + ': ' + aes.args.record.encrypt[aesObjectKeys[i]];
           }
         }
+        document.getElementById('encryptionProcess').innerHTML = html3 + aesObjectEncrypt;
         // update cyphertext
         console.log("AES Cyphertext: " + cyphertext);
         document.getElementById('plaintextResult').innerHTML = html2 + cyphertext;
