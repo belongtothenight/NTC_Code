@@ -207,10 +207,7 @@
         <button type="button" id="keySent" name="keygen" onclick="keyButton()">Generate Expanded Key</button><br>
       </span>
       <!-- keyResult -->
-      <label for="keyResult">Expanded Key: </label>
-      <span>
-        <label id="keyResult"></label>
-      </span>
+      <p id="keyResult">Expanded Key: </p>
       <br>
     </div>
 
@@ -231,7 +228,7 @@
       <!-- Encryption Process -->
       <p id="encryptionProcess">Round0-10</p>
       <!-- plaintextResult -->
-      <label id="plaintextResult">Generated cyphertext: </label>
+      <label id="plaintextResult">Generated cyphertext: Nan</label>
       <br>
     </div>
 
@@ -253,7 +250,7 @@
       <!-- Decryption Process -->
       <p id="decryptionProcess">Round0-10</p>
       <!-- cyphertextResult -->
-      <label id="cyphertextResult">Generated plaintext: </label>
+      <label id="cyphertextResult">Generated plaintext: Nan</label>
       <br>
     </div>
   </div>
@@ -336,7 +333,7 @@
           aes.args.record.keyExpansion.key8 + '\n' +
           aes.args.record.keyExpansion.key9 + '\n' +
           aes.args.record.keyExpansion.key10;
-        var expandedAESKeyHTML = '' +
+        var expandedAESKeyHTML = '<br/>' +
           aes.args.record.keyExpansion.key0 + '<br/>' +
           aes.args.record.keyExpansion.key1 + '<br/>' +
           aes.args.record.keyExpansion.key2 + '<br/>' +
@@ -348,9 +345,13 @@
           aes.args.record.keyExpansion.key8 + '<br/>' +
           aes.args.record.keyExpansion.key9 + '<br/>' +
           aes.args.record.keyExpansion.key10;
+        // update key status
         console.log("AES Key: " + key);
-        console.log("AES Expanded Key: \n" + expandedAESKeyJS);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
+        // update expanded key
+        console.log("AES Expanded Key: \n" + expandedAESKeyJS);
+        var html = document.getElementById('keyResult').innerHTML;
+        document.getElementById('keyResult').innerHTML = html + expandedAESKeyHTML;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
@@ -368,6 +369,7 @@
       var aes = new AES(key, 128);
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
+        // update key status
         console.log("AES Key: " + key);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       } else {
@@ -379,6 +381,7 @@
       let cyphertext = aes.encrypt(plaintext);
       // get plaintext status (Done or Error)
       if (aes.args.info.hexInputValidation == 'pass') {
+        // update plaintext status
         console.log("AES Cyphertext: " + cyphertext);
         document.getElementById('plaintextStatus').innerHTML = 'Plaintext status: ' + aes.args.info.hexInputValidation;
         document.getElementById('plaintextResult').innerHTML = 'Generated cyphertext: ' + cyphertext;
