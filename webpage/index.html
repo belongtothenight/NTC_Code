@@ -321,7 +321,18 @@
         console.log("Key Expansion key0: " + aes.args.record.keyExpansion.key0)
         console.log("Key Expansion key1: " + aes.args.record.keyExpansion.key1)
         console.log("Key Expansion key2: " + aes.args.record.keyExpansion.key2)
-        document.getElementById('keyStatus').innerHTML = aes.args.key;
+        document.getElementById('keyStatus').innerHTML = '' +
+          aes.args.record.keyExpansion.key0 + '\n' +
+          aes.args.record.keyExpansion.key1 + '\n' +
+          aes.args.record.keyExpansion.key2 + '\n' +
+          aes.args.record.keyExpansion.key3 + '\n' +
+          aes.args.record.keyExpansion.key4 + '\n' +
+          aes.args.record.keyExpansion.key5 + '\n' +
+          aes.args.record.keyExpansion.key6 + '\n' +
+          aes.args.record.keyExpansion.key7 + '\n' +
+          aes.args.record.keyExpansion.key8 + '\n' +
+          aes.args.record.keyExpansion.key9 + '\n' +
+          aes.args.record.keyExpansion.key10;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
@@ -918,9 +929,7 @@
       this.args.record.keyExpansion['rcon'] = this.args.rcon; // record
 
       // expand key
-      console.log('keyExpansion')
-      console.log('round: ' + this.args.round);
-      var wCount = (this.args.round + 1) * 4;
+      let wCount = (this.args.round + 1) * 4;
       let w = [];
       for (let i = 0; i < 4; i++) {
         // first 4 words are the key / 1st key
@@ -934,10 +943,10 @@
         // rest of the words / rest of the keys
         temp = w[i - 1];
         if (i % 4 === 0) {
-          console.log('temp', this._byteArrayToHexArray(temp));
-          console.log('rotBytes', this._byteArrayToHexArray(this._rotBytes1(temp)));
-          console.log('subBytes', this._byteArrayToHexArray(this._subBytes(this._rotBytes1(temp))));
-          console.log('xorBytes1', this._byteArrayToHexArray(this._xorBytes1(this._subBytes(this._rotBytes1(temp)), this.args.rcon[i / 4 - 1])));
+          // console.log('temp', this._byteArrayToHexArray(temp));
+          // console.log('rotBytes', this._byteArrayToHexArray(this._rotBytes1(temp)));
+          // console.log('subBytes', this._byteArrayToHexArray(this._subBytes(this._rotBytes1(temp))));
+          // console.log('xorBytes1', this._byteArrayToHexArray(this._xorBytes1(this._subBytes(this._rotBytes1(temp)), this.args.rcon[i / 4 - 1])));
           temp = this._xorBytes1(this._subBytes(this._rotBytes1(temp)), this.args.rcon[i / 4 - 1]);
         }
         w.push(this._xorBytes2(w[i - 4], temp));
@@ -947,11 +956,11 @@
       }
       this.args.key = w;
 
-      // inspect key in hex
-      // console.log('key', this._byteArrayToHexArray(this.args.key));
-      for (let i = 0; i < w.length; i++) {
-        console.log('w' + i, this._byteArrayToHexArray(w[i]));
-      }
+      // // inspect key in hex
+      // // console.log('key', this._byteArrayToHexArray(this.args.key));
+      // for (let i = 0; i < w.length; i++) {
+      //   console.log('w' + i, this._byteArrayToHexArray(w[i]));
+      // }
 
       if (this.print._keyExpansion) {
         console.log('key expansion');
