@@ -315,6 +315,10 @@
 
     // AES Initialization
     function AESInitialization(key) {
+      /*
+      Initialize AES functions.
+      Update key status.
+      */
       // Initialize AES with Key
       var aes = new AES(key, 128);
       // get key status (Done or Error)
@@ -354,6 +358,7 @@
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
       }
+      return aes;
     }
 
     // Website initialization
@@ -373,7 +378,8 @@
       var plaintext = document.getElementById('plaintext').value;
       console.log("AES Plaintext: " + plaintext);
 
-      AESInitialization(key);
+      // Initialize AES with Key
+      var aes = AESInitialization(key);
 
       // Encrypt plaintext
       let cyphertext = aes.encrypt(plaintext);
@@ -402,15 +408,7 @@
       console.log("AES Cyphertext: " + cyphertext);
 
       // Initialize AES with Key
-      var aes = new AES(key, 128);
-      // get key status (Done or Error)
-      if (aes.args.info.hexInputValidation == 'pass') {
-        console.log("AES Key: " + key);
-        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
-      } else {
-        console.log("AES Key: " + aes.args.info.hexInputValidation);
-        document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
-      }
+      var aes = AESInitialization(key);
 
       // Decrypt cyphertext
       let plaintext = aes.decrypt(cyphertext);
