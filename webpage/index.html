@@ -317,6 +317,8 @@
       // get key status (Done or Error)
       if (aes.args.info.hexInputValidation == 'Done') {
         console.log("AES Key: " + key);
+        console.log("AES Expanded Key: " + aes.args.key);
+        document.getElementById('keyStatus').innerHTML = aes.args.key;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
