@@ -350,6 +350,7 @@
         console.log("AES Expanded Key: \n" + expandedAESKeyJS);
         let html = document.getElementById('keyResult').innerHTML;
         document.getElementById('keyResult').innerHTML = html + expandedAESKeyHTML;
+        console.log('html: ' + html);
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
