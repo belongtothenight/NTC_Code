@@ -318,7 +318,7 @@
       if (aes.args.info.hexInputValidation == 'pass') {
         console.log("AES Key: " + key);
         console.log("AES Expanded Key: " + aes.args.key);
-        console.log("Key Expansion: " + aes.args.keyExpansion)
+        console.log("Key Expansion: " + aes.args.record.keyExpansion)
         document.getElementById('keyStatus').innerHTML = aes.args.key;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
