@@ -823,9 +823,11 @@
       //   console.log('input is not hex string');
       // }
       // ////////////////////////////////////////////////////////////////////////////
+      var status = true;
 
       // check key is string
       if (typeof input !== 'string') {
+        status = false;
         console.log('key must be a string');
         this.args.info.hexInputValidation = 'key must be a string';
         // throw new Error('key must be a string');
@@ -833,6 +835,7 @@
 
       // check string length
       if (input.length !== size * 2) {
+        status = false;
         console.log('key length must be ' + size * 2);
         this.args.info.hexInputValidation = 'key length must be ' + size * 2;
         // throw new Error('key length must be ' + size * 2);
@@ -841,13 +844,16 @@
       // check key is hex string
       var origin = input.match(/[0-9a-fA-F]{2}/g).join('');
       if (input !== origin) {
+        status = false;
         console.log('key must be a hex string');
         this.args.info.hexInputValidation = 'key must be a hex string';
         // throw new Error('key must be a hex string');
       }
 
       // pass
-      this.args.info.hexInputValidation = 'pass';
+      if (status) {
+        this.args.info.hexInputValidation = 'pass';
+      }
     };
 
     AES.prototype.init = function () {
