@@ -930,10 +930,10 @@
         // rest of the words / rest of the keys
         temp = w[i - 1];
         if (i % 4 === 0) {
-          // console.log('temp', this._byteArrayToHexArray(temp));
-          // console.log('rotBytes', this._byteArrayToHexArray(this._rotBytes1(temp)));
-          // console.log('subBytes', this._byteArrayToHexArray(this._subBytes(this._rotBytes1(temp))));
-          // console.log('xorBytes1', this._byteArrayToHexArray(this._xorBytes1(this._subBytes(this._rotBytes1(temp)), this.args.rcon[i / 4 - 1])));
+          console.log('temp', this._byteArrayToHexArray(temp));
+          console.log('rotBytes', this._byteArrayToHexArray(this._rotBytes1(temp)));
+          console.log('subBytes', this._byteArrayToHexArray(this._subBytes(this._rotBytes1(temp))));
+          console.log('xorBytes1', this._byteArrayToHexArray(this._xorBytes1(this._subBytes(this._rotBytes1(temp)), this.args.rcon[i / 4 - 1])));
           temp = this._xorBytes1(this._subBytes(this._rotBytes1(temp)), this.args.rcon[i / 4 - 1]);
         }
         w.push(this._xorBytes2(w[i - 4], temp));
