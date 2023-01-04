@@ -348,11 +348,8 @@
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
         // update expanded key
         console.log("AES Expanded Key: \n" + expandedAESKeyJS);
-        var html = document.getElementById('keyResult').innerHTML;
-        html = html.split('<br/>')[0];
-        console.log('html: ' + html);
+        const html = 'Expanded Key: <br/>'
         document.getElementById('keyResult').innerHTML = html + expandedAESKeyHTML;
-        console.log('html: ' + html);
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
