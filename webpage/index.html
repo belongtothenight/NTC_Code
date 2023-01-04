@@ -199,7 +199,7 @@
       <!-- key input -->
       <label for="key">Key: (16 bytes Hex numbers with no space)</label>
       <span>
-        <input type="text" id="key" name="key" placeholder="Enter Key" value="input key">
+        <input type="text" id="key" name="key" placeholder="Enter Key" value="00000000000000000000000000000000">
       </span>
       <!-- keySent button -->
       <label for="keySent" id="keyStatus">Key status: </label>
@@ -218,7 +218,8 @@
       <!-- plaintext input -->
       <label for="plaintext">Plaintext: (16 bytes Hex numbers with no space)</label>
       <span>
-        <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext" value="input plaintext">
+        <input type="text" id="plaintext" name="plaintext" placeholder="Enter Plaintext"
+          value="00000101030307070f0f1f1f3f3f7f7f">
       </span>
       <!-- plaintextSent button -->
       <label for="plaintextSent" id="plaintextStatus">Plaintext status: </label>
@@ -239,7 +240,8 @@
       <!-- cyphertext input -->
       <label for="cyphertext">Cyphertext: (16 bytes Hex numbers with no space)</label>
       <span>
-        <input type="text" id="cyphertext" name="cyphertext" placeholder="Enter cyphertext" value="input cyphertext">
+        <input type="text" id="cyphertext" name="cyphertext" placeholder="Enter cyphertext"
+          value="c7d12419489e3b6233a2c5a7f4563172">
       </span>
       <!-- cyphertextSent button -->
       <label for="cyphertextSent" id="cyphertextStatus">Cyphertext status: </label>
@@ -334,17 +336,17 @@
           aes.args.record.keyExpansion.key9 + '\n' +
           aes.args.record.keyExpansion.key10;
         var expandedAESKeyHTML = '<br/>' +
-          aes.args.record.keyExpansion.key0 + '<br/>' +
-          aes.args.record.keyExpansion.key1 + '<br/>' +
-          aes.args.record.keyExpansion.key2 + '<br/>' +
-          aes.args.record.keyExpansion.key3 + '<br/>' +
-          aes.args.record.keyExpansion.key4 + '<br/>' +
-          aes.args.record.keyExpansion.key5 + '<br/>' +
-          aes.args.record.keyExpansion.key6 + '<br/>' +
-          aes.args.record.keyExpansion.key7 + '<br/>' +
-          aes.args.record.keyExpansion.key8 + '<br/>' +
-          aes.args.record.keyExpansion.key9 + '<br/>' +
-          aes.args.record.keyExpansion.key10;
+          'key0' + aes.args.record.keyExpansion.key0 + '<br/>' +
+          'key1' + aes.args.record.keyExpansion.key1 + '<br/>' +
+          'key2' + aes.args.record.keyExpansion.key2 + '<br/>' +
+          'key3' + aes.args.record.keyExpansion.key3 + '<br/>' +
+          'key4' + aes.args.record.keyExpansion.key4 + '<br/>' +
+          'key5' + aes.args.record.keyExpansion.key5 + '<br/>' +
+          'key6' + aes.args.record.keyExpansion.key6 + '<br/>' +
+          'key7' + aes.args.record.keyExpansion.key7 + '<br/>' +
+          'key8' + aes.args.record.keyExpansion.key8 + '<br/>' +
+          'key9' + aes.args.record.keyExpansion.key9 + '<br/>' +
+          'key10' + aes.args.record.keyExpansion.key10;
         // update key status
         console.log("AES Key: " + key);
         document.getElementById('keyStatus').innerHTML = 'Key status: ' + aes.args.info.hexInputValidation;
