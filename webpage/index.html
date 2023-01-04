@@ -342,7 +342,7 @@
           aes.args.record.keyExpansion.key10;
         console.log("AES Key: " + key);
         console.log("AES Expanded Key: \n" + expandedAESKeyJS);
-        document.getElementById('keyStatus').innerHTML = expandedAESKeyHTML;
+        document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
       } else {
         console.log("AES Key: " + aes.args.info.hexInputValidation);
         document.getElementById('keyStatus').innerHTML = aes.args.info.hexInputValidation;
@@ -372,13 +372,12 @@
         // get plaintext status (Done or Error)
         if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Cyphertext: " + cyphertext);
-          document.getElementById('plaintextStatus').innerHTML = 'pass';
+          document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
           document.getElementById('plaintextResult').innerHTML = cyphertext;
         } else {
           console.log("AES Plaintext: " + aes.args.info.hexInputValidation);
           document.getElementById('plaintextStatus').innerHTML = aes.args.info.hexInputValidation;
         }
-        console.log("AES Cyphertext: " + cyphertext);
       } catch (e) {
         console.error(e);
         document.getElementById('plaintextStatus').innerHTML = 'Error encrypting the plaintext, check the console.';
@@ -407,7 +406,7 @@
         // get plaintext status (Done or Error)
         if (aes.args.info.hexInputValidation == 'pass') {
           console.log("AES Plaintext: " + plaintext);
-          document.getElementById('cyphertextStatus').innerHTML = 'pass';
+          document.getElementById('cyphertextStatus').innerHTML = aes.args.info.hexInputValidation;
           document.getElementById('cyphertextResult').innerHTML = plaintext;
         } else {
           console.log("AES Cyphertext: " + aes.args.info.hexInputValidation);
