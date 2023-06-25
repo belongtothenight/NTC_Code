@@ -1,0 +1,21 @@
+os: Ubuntu 18.04.6 LTS (Bionic Beaver) 64-bit PC (AMD64) server install image
+
+
+///////////////////
+Profile Setup
+==========
+name:zero
+server name:lab518
+username:user
+password:012345
+cf password:012345
+///////////////////
+
+
+Machine Detail
+
+Service
+
+Plan
+- completion time
+- tasks (completed)
